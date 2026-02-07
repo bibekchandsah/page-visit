@@ -687,34 +687,93 @@
     // Load dashboard data
     async function loadDashboardData() {
       try {
-        // Fetch stats
-        const statsRes = await fetch(`/api/stats/${currentUser.username}`);
-        const stats = await statsRes.json();
+        // Fetch all counters first
+        const countersRes = await fetch('/api/counters', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const counters = await countersRes.json();
         
-        document.getElementById('stat-total').textContent = stats.total.toLocaleString();
-        document.getElementById('stat-today').textContent = stats.today.toLocaleString();
-        document.getElementById('stat-change').textContent = `+${stats.today} today`;
+        // Aggregate stats from all counters
+        let totalViews = 0;
+        let todayViews = 0;
+        let weeklyData = [0, 0, 0, 0, 0, 0, 0];
+        
+        // Fetch stats for each counter and aggregate
+        for (const counter of counters) {
+          const statsRes = await fetch(`/api/stats/${counter.username}${counter.repo ? `?repo=${counter.repo}` : ''}`);
+          const stats = await statsRes.json();
+          
+          totalViews += stats.total || 0;
+          todayViews += stats.today || 0;
+          
+          if (stats.weekly && Array.isArray(stats.weekly)) {
+            stats.weekly.forEach((val, i) => {
+              weeklyData[i] += val || 0;
+            });
+          }
+        }
+        
+        document.getElementById('stat-total').textContent = totalViews.toLocaleString();
+        document.getElementById('stat-today').textContent = todayViews.toLocaleString();
+        document.getElementById('stat-change').textContent = `+${todayViews} today`;
         
         // Calculate week total
-        const weekTotal = stats.weekly.reduce((a, b) => a + b, 0);
+        const weekTotal = weeklyData.reduce((a, b) => a + b, 0);
         document.getElementById('stat-week').textContent = weekTotal.toLocaleString();
         
         // Render chart
-        renderChart(stats.weekly);
+        renderChart(weeklyData);
         
-        // Fetch counters
-        await refreshCounters();
+        // Update counters table
+        updateCountersTable(counters);
         
         // Fetch badge configs
         const badgesRes = await fetch('/api/badges', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const badges = await badgesRes.json();
-        document.getElementById('stat-badges').textContent = badges.length || '1';
+        document.getElementById('stat-badges').textContent = badges.length || counters.length || '1';
         
       } catch (err) {
         console.error('Error loading dashboard data:', err);
       }
+    }
+    
+    // Update counters table
+    function updateCountersTable(counters) {
+      const tbody = document.getElementById('counters-table-body');
+      const noCounters = document.getElementById('no-counters');
+      
+      if (counters.length === 0) {
+        tbody.innerHTML = '';
+        noCounters.classList.remove('hidden');
+        return;
+      }
+      
+      noCounters.classList.add('hidden');
+      
+      tbody.innerHTML = counters.map(c => {
+        const badgeUrl = `${baseUrl}/badge?username=${c.username}${c.repo ? `&repo=${c.repo}` : ''}`;
+        return `
+        <tr>
+          <td>${c.repo ? `${c.username}/${c.repo}` : c.username}</td>
+          <td>${c.total_views.toLocaleString()}</td>
+          <td>${(c.today || 0).toLocaleString()}</td>
+          <td>${new Date(c.created_at).toLocaleDateString()}</td>
+          <td class="actions-cell">
+            <a href="${badgeUrl}" target="_blank" title="Open badge" class="btn-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+            <button class="btn btn-secondary" onclick="copyCounterEmbed('${c.username}', '${c.repo || ''}')">Copy</button>
+            <button class="btn btn-secondary" onclick="showSetCountModal('${c.username}', '${c.repo || ''}', ${c.total_views})">Set</button>
+            <button class="btn btn-danger" onclick="resetCounter('${c.username}', '${c.repo || ''}')">Reset</button>
+          </td>
+        </tr>
+      `}).join('');
     }
     
     // Render weekly chart
@@ -744,41 +803,7 @@
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const counters = await res.json();
-        
-        const tbody = document.getElementById('counters-table-body');
-        const noCounters = document.getElementById('no-counters');
-        
-        if (counters.length === 0) {
-          tbody.innerHTML = '';
-          noCounters.classList.remove('hidden');
-          return;
-        }
-        
-        noCounters.classList.add('hidden');
-        
-        tbody.innerHTML = counters.map(c => {
-          const badgeUrl = `${baseUrl}/badge?username=${c.username}${c.repo ? `&repo=${c.repo}` : ''}`;
-          return `
-          <tr>
-            <td>${c.repo ? `${c.username}/${c.repo}` : c.username}</td>
-            <td>${c.total_views.toLocaleString()}</td>
-            <td>${(c.today || 0).toLocaleString()}</td>
-            <td>${new Date(c.created_at).toLocaleDateString()}</td>
-            <td class="actions-cell">
-              <a href="${badgeUrl}" target="_blank" title="Open badge" class="btn-icon">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </a>
-              <button class="btn btn-secondary" onclick="copyCounterEmbed('${c.username}', '${c.repo || ''}')">Copy</button>
-              <button class="btn btn-secondary" onclick="showSetCountModal('${c.username}', '${c.repo || ''}', ${c.total_views})">Set</button>
-              <button class="btn btn-danger" onclick="resetCounter('${c.username}', '${c.repo || ''}')">Reset</button>
-            </td>
-          </tr>
-        `}).join('');
-        
+        updateCountersTable(counters);
       } catch (err) {
         console.error('Error fetching counters:', err);
       }
