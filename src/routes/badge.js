@@ -1,4 +1,4 @@
-import { generateBadge, svgToPng, generateJson } from '../services/badge.js';
+import { generateBadge, svgToPng, generateJson, generateCustomBadge } from '../services/badge.js';
 import { trackView } from '../services/counter.js';
 
 export async function badgeRoutes(fastify) {
@@ -18,7 +18,8 @@ export async function badgeRoutes(fastify) {
       font = 'Verdana, Geneva, sans-serif',
       format = 'svg',
       countFormat = 'normal',
-      cooldown = '300'
+      cooldown = '300',
+      template // Base64 encoded custom template
     } = request.query;
     
     // Validate username
@@ -39,6 +40,35 @@ export async function badgeRoutes(fastify) {
       userAgent,
       cooldown: parseInt(cooldown, 10) || 300
     });
+    
+    // Handle custom template
+    if (style === 'custom' && template) {
+      try {
+        const decodedTemplate = Buffer.from(template, 'base64').toString('utf-8');
+        const customSvg = generateCustomBadge(decodedTemplate, {
+          count: viewResult.count,
+          label,
+          bg,
+          textColor,
+          countFormat
+        });
+        
+        if (format === 'json') {
+          return reply
+            .header('Content-Type', 'application/json')
+            .header('Cache-Control', 'no-cache, no-store, must-revalidate')
+            .send(generateJson(viewResult.count, username, repo));
+        }
+        
+        return reply
+          .header('Content-Type', 'image/svg+xml')
+          .header('Cache-Control', 'max-age=0, no-cache, no-store, must-revalidate')
+          .send(customSvg);
+      } catch (err) {
+        // Fall back to default style on error
+        console.error('Custom template error:', err);
+      }
+    }
     
     // Generate badge
     const badgeOptions = {

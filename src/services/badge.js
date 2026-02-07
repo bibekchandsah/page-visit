@@ -221,4 +221,31 @@ export function generateJson(count, username, repo = null) {
   };
 }
 
+// Generate custom badge from user template
+export function generateCustomBadge(template, options = {}) {
+  const {
+    count = 0,
+    label = 'Views',
+    bg = '4c1',
+    textColor = 'fff',
+    countFormat = 'normal'
+  } = options;
+  
+  const formattedCount = formatCount(count, countFormat);
+  
+  // Replace placeholders in template
+  let svg = template
+    .replace(/\{\{count\}\}/g, escapeXml(formattedCount))
+    .replace(/\{\{label\}\}/g, escapeXml(label))
+    .replace(/\{\{bg\}\}/g, bg.replace('#', ''))
+    .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''));
+  
+  // Basic sanitization - remove script tags and event handlers
+  svg = svg
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/\bon\w+\s*=/gi, 'data-removed=');
+  
+  return svg;
+}
+
 export { formatCount, parseColor };

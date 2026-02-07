@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -37,13 +38,13 @@
       --yellow: #d29922;
       --border: #30363d;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
@@ -51,45 +52,45 @@
       line-height: 1.6;
       min-height: 100vh;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
-    
+
     /* Navigation */
     nav {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
-    
+
     nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--text-primary);
       text-decoration: none;
     }
-    
+
     .user-info {
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    
+
     .user-info img {
       width: 32px;
       height: 32px;
       border-radius: 50%;
     }
-    
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -103,53 +104,53 @@
       border: none;
       font-size: 0.875rem;
     }
-    
+
     .btn-primary {
       background: var(--accent);
       color: var(--bg-primary);
     }
-    
+
     .btn-primary:hover {
       background: var(--accent-hover);
     }
-    
+
     .btn-secondary {
       background: var(--bg-tertiary);
       color: var(--text-primary);
       border: 1px solid var(--border);
     }
-    
+
     .btn-secondary:hover {
       border-color: var(--accent);
     }
-    
+
     .btn-danger {
       background: var(--red);
       color: white;
     }
-    
+
     .btn-danger:hover {
       opacity: 0.9;
     }
-    
+
     /* Dashboard Layout */
     .dashboard {
       padding: 40px 0;
     }
-    
+
     .dashboard-header {
       margin-bottom: 40px;
     }
-    
+
     .dashboard-header h1 {
       font-size: 2rem;
       margin-bottom: 8px;
     }
-    
+
     .dashboard-header p {
       color: var(--text-secondary);
     }
-    
+
     /* Stats Grid */
     .stats-grid {
       display: grid;
@@ -157,39 +158,39 @@
       gap: 24px;
       margin-bottom: 40px;
     }
-    
+
     .stat-card {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 24px;
     }
-    
+
     .stat-card h3 {
       color: var(--text-secondary);
       font-size: 0.875rem;
       font-weight: 500;
       margin-bottom: 8px;
     }
-    
+
     .stat-card .value {
       font-size: 2rem;
       font-weight: 700;
     }
-    
+
     .stat-card .change {
       font-size: 0.875rem;
       margin-top: 4px;
     }
-    
+
     .stat-card .change.positive {
       color: var(--green);
     }
-    
+
     .stat-card .change.negative {
       color: var(--red);
     }
-    
+
     /* Counters Section */
     .section {
       background: var(--bg-secondary);
@@ -198,51 +199,51 @@
       padding: 24px;
       margin-bottom: 24px;
     }
-    
+
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 24px;
     }
-    
+
     .section-header h2 {
       font-size: 1.25rem;
     }
-    
+
     /* Counter Table */
     .counter-table {
       width: 100%;
       border-collapse: collapse;
     }
-    
+
     .counter-table th,
     .counter-table td {
       padding: 16px;
       text-align: left;
       border-bottom: 1px solid var(--border);
     }
-    
+
     .counter-table th {
       color: var(--text-secondary);
       font-weight: 500;
       font-size: 0.875rem;
     }
-    
+
     .counter-table tr:last-child td {
       border-bottom: none;
     }
-    
+
     .counter-table .badge-preview {
       height: 28px;
     }
-    
+
     .actions-cell {
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    
+
     .btn-icon {
       background: transparent;
       border: 1px solid var(--border);
@@ -256,7 +257,7 @@
       flex-shrink: 0;
       text-decoration: none;
     }
-    
+
     .btn-icon:hover {
       background: var(--surface);
       color: var(--accent);
@@ -269,31 +270,31 @@
       grid-template-columns: 1fr 300px;
       gap: 32px;
     }
-    
+
     @media (max-width: 768px) {
       .badge-creator {
         grid-template-columns: 1fr;
       }
     }
-    
+
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
     }
-    
+
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
-    
+
     .form-group label {
       font-size: 0.875rem;
       font-weight: 500;
       color: var(--text-secondary);
     }
-    
+
     .form-group input,
     .form-group select {
       padding: 10px 12px;
@@ -303,59 +304,190 @@
       color: var(--text-primary);
       font-size: 0.875rem;
     }
-    
+
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: var(--accent);
     }
-    
+
     .color-input-wrapper {
       display: flex;
       gap: 8px;
       align-items: center;
+      width: 100%;
     }
-    
-    .color-picker {
-      width: 40px;
-      height: 36px;
-      padding: 2px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      cursor: pointer;
-      background: var(--bg-tertiary);
-    }
-    
-    .color-picker::-webkit-color-swatch-wrapper {
-      padding: 2px;
-    }
-    
-    .color-picker::-webkit-color-swatch {
-      border-radius: 4px;
-      border: none;
-    }
-    
+
     .color-input-wrapper input[type="text"] {
       flex: 1;
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-size: 0.875rem;
     }
-    
+
+    .color-picker {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      padding: 0;
+      border: none;
+      border-radius: 50% !important;
+      cursor: pointer;
+      background:
+        radial-gradient(white, transparent),
+        conic-gradient(red, orange, yellow, green, cyan, blue, magenta, red) !important;
+      -webkit-appearance: none;
+      appearance: none;
+      flex-shrink: 0;
+      position: relative;
+      left: -42px;
+    }
+
+    .color-picker::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 50% !important;
+    }
+
+    .color-picker::-webkit-color-swatch {
+      border-radius: 50%;
+      border: none;
+    }
+
+    .color-picker::-moz-color-swatch {
+      border-radius: 50%;
+      border: none;
+    }
+
+    /* Template Editor Styles */
+    .template-editor {
+      grid-column: 1 / -1;
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 8px;
+    }
+
+    .template-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .template-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .template-help {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .template-help code {
+      background: var(--bg-primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      color: var(--accent);
+    }
+
+    .template-textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      resize: vertical;
+      tab-size: 2;
+    }
+
+    .template-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .template-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .template-actions .btn {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+    }
+
+    .template-help.warning {
+      color: #f59e0b;
+    }
+
+    .html-editor-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border: none;
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-secondary);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .html-preview-frame {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .preview-panel {
       background: var(--bg-tertiary);
       border-radius: 8px;
       padding: 24px;
       text-align: center;
     }
-    
+
     .preview-panel h3 {
       margin-bottom: 16px;
       color: var(--text-secondary);
       font-size: 0.875rem;
     }
-    
+
     .preview-panel img {
       margin-bottom: 16px;
     }
-    
+
     .code-output {
       background: var(--bg-primary);
       border-radius: 6px;
@@ -366,7 +498,7 @@
       text-align: left;
       margin-bottom: 12px;
     }
-    
+
     /* Chart */
     .chart-container {
       height: 200px;
@@ -375,7 +507,7 @@
       gap: 8px;
       padding: 20px 0;
     }
-    
+
     .chart-bar {
       flex: 1;
       background: linear-gradient(to top, var(--accent), var(--green));
@@ -383,7 +515,7 @@
       min-height: 4px;
       transition: height 0.3s;
     }
-    
+
     .chart-labels {
       display: flex;
       justify-content: space-between;
@@ -391,7 +523,7 @@
       font-size: 0.75rem;
       margin-top: 8px;
     }
-    
+
     /* Login Screen */
     .login-screen {
       min-height: calc(100vh - 80px);
@@ -399,7 +531,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .login-box {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -408,22 +540,22 @@
       text-align: center;
       max-width: 400px;
     }
-    
+
     .login-box h1 {
       font-size: 1.5rem;
       margin-bottom: 16px;
     }
-    
+
     .login-box p {
       color: var(--text-secondary);
       margin-bottom: 32px;
     }
-    
+
     /* Hidden state */
     .hidden {
       display: none !important;
     }
-    
+
     /* Modal */
     .modal-overlay {
       position: fixed;
@@ -437,7 +569,7 @@
       justify-content: center;
       z-index: 1000;
     }
-    
+
     .modal {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -446,35 +578,35 @@
       max-width: 400px;
       width: 90%;
     }
-    
+
     .modal h3 {
       margin-bottom: 16px;
     }
-    
+
     .modal p {
       color: var(--text-secondary);
       margin-bottom: 24px;
       font-size: 0.875rem;
     }
-    
+
     .modal-actions {
       display: flex;
       gap: 12px;
       justify-content: flex-end;
       margin-top: 24px;
     }
-    
-    
+
+
     /* Responsive */
     @media (max-width: 768px) {
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      
+
       .counter-table {
         font-size: 0.875rem;
       }
-      
+
       .counter-table th,
       .counter-table td {
         padding: 12px 8px;
@@ -482,6 +614,7 @@
     }
   </style>
 </head>
+
 <body>
   <nav>
     <div class="container">
@@ -491,26 +624,29 @@
       </div>
     </div>
   </nav>
-  
+
   <!-- Login Screen -->
   <div class="login-screen" id="login-screen">
     <div class="login-box">
       <h1>Welcome to Dashboard</h1>
       <p>Sign in with GitHub to access your view counters, analytics, and badge customization.</p>
       <a href="/auth/github" class="btn btn-primary" style="width: 100%; justify-content: center;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+        </svg>
         Sign in with GitHub
       </a>
     </div>
   </div>
-  
+
   <!-- Dashboard (hidden until logged in) -->
   <div class="dashboard container hidden" id="dashboard">
     <div class="dashboard-header">
       <h1>Dashboard</h1>
       <p>Manage your view counters and customize badges</p>
     </div>
-    
+
     <!-- Stats Cards -->
     <div class="stats-grid">
       <div class="stat-card">
@@ -531,7 +667,7 @@
         <div class="value" id="stat-badges">0</div>
       </div>
     </div>
-    
+
     <!-- Weekly Chart -->
     <div class="section">
       <div class="section-header">
@@ -550,7 +686,7 @@
         <span id="chart-day-6">Sun</span>
       </div>
     </div>
-    
+
     <!-- Badge Creator -->
     <div class="section">
       <div class="section-header">
@@ -570,6 +706,8 @@
               <option value="pill">Pill</option>
               <option value="neon">Neon</option>
               <option value="glass">Glass</option>
+              <option value="custom">Custom SVG</option>
+              <option value="html">Custom HTML/CSS</option>
             </select>
           </div>
           <div class="form-group">
@@ -590,15 +728,15 @@
           <div class="form-group">
             <label>Background</label>
             <div class="color-input-wrapper">
-              <input type="color" id="badge-bg-picker" value="#44cc11" class="color-picker">
               <input type="text" id="badge-bg" value="4c1" placeholder="hex or gradient">
+              <input type="color" id="badge-bg-picker" value="#44cc11" class="color-picker">
             </div>
           </div>
           <div class="form-group">
             <label>Text Color</label>
             <div class="color-input-wrapper">
-              <input type="color" id="badge-textColor-picker" value="#ffffff" class="color-picker">
               <input type="text" id="badge-textColor" value="fff">
+              <input type="color" id="badge-textColor-picker" value="#ffffff" class="color-picker">
             </div>
           </div>
           <div class="form-group">
@@ -619,8 +757,8 @@
           <div class="form-group" id="border-color-group" style="display: none;">
             <label>Border Color</label>
             <div class="color-input-wrapper">
-              <input type="color" id="badge-borderColor-picker" value="#333333" class="color-picker">
               <input type="text" id="badge-borderColor" value="333">
+              <input type="color" id="badge-borderColor-picker" value="#333333" class="color-picker">
             </div>
           </div>
           <div class="form-group">
@@ -632,16 +770,97 @@
             </select>
           </div>
         </div>
-        
+
+        <!-- Custom Template Editor -->
+        <div id="custom-template-editor" class="template-editor" style="display: none;">
+          <div class="template-header">
+            <h3>Custom SVG Template</h3>
+            <span class="template-help">Use placeholders: <code>{{count}}</code>, <code>{{label}}</code>,
+              <code>{{bg}}</code>, <code>{{textColor}}</code></span>
+          </div>
+          <textarea id="custom-template" class="template-textarea" spellcheck="false">
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="40" rx="8" fill="url(#bg-grad)"/>
+  <text x="20" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="14">{{label}}</text>
+  <text x="150" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="16" font-weight="bold">{{count}}</text>
+</svg>
+          </textarea>
+          <div class="template-actions">
+            <button class="btn btn-secondary" onclick="resetTemplate()">Reset to Default</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('minimal')">Minimal</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('gradient')">Gradient</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('animated')">Animated</button>
+          </div>
+        </div>
+
+        <!-- HTML Template Editor -->
+        <div id="html-template-editor" class="template-editor" style="display: none;">
+          <div class="template-header">
+            <h3>Custom HTML/CSS Template</h3>
+            <span class="template-help warning">HTML badges work on websites only, not GitHub READMEs</span>
+          </div>
+          <div class="html-editor-tabs">
+            <button class="tab-btn active" onclick="switchHtmlTab('html')">HTML</button>
+            <button class="tab-btn" onclick="switchHtmlTab('css')">CSS</button>
+          </div>
+          <textarea id="html-template" class="template-textarea" spellcheck="false">
+<div class="badge-container">
+  <span class="badge-label">{{label}}</span>
+  <span class="badge-count">{{count}}</span>
+</div>
+          </textarea>
+          <textarea id="css-template" class="template-textarea" spellcheck="false" style="display: none;">
+.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #{{bg}} 0%, #6366f1 100%);
+  border-radius: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.badge-label {
+  color: #{{textColor}};
+  font-size: 14px;
+}
+
+.badge-count {
+  color: #{{textColor}};
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+          </textarea>
+          <div class="template-actions">
+            <button class="btn btn-secondary" onclick="resetHtmlTemplate()">Reset to Default</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('card')">Card Style</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('neon')">Neon Glow</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('modern')">Modern</button>
+          </div>
+        </div>
+
         <div class="preview-panel">
           <h3>Live Preview</h3>
           <img id="badge-preview-img" src="" alt="Badge preview">
+          <div id="html-preview-container" class="html-preview-frame" style="display: none;"></div>
           <div class="code-output" id="badge-markdown"></div>
           <button class="btn btn-primary" style="width: 100%;" onclick="copyBadgeCode()">Copy Markdown</button>
+          <button id="copy-html-btn" class="btn btn-secondary" style="width: 100%; margin-top: 8px; display: none;"
+            onclick="copyHtmlCode()">Copy HTML Embed Code</button>
         </div>
       </div>
     </div>
-    
+
     <!-- Counters List -->
     <div class="section">
       <div class="section-header">
@@ -667,12 +886,13 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Set Count Modal -->
   <div id="set-count-modal" class="modal-overlay hidden">
     <div class="modal">
       <h3>Set View Count</h3>
-      <p>Set your counter to a specific number. Useful for resuming from a previous count or migrating from another service.</p>
+      <p>Set your counter to a specific number. Useful for resuming from a previous count or migrating from another
+        service.</p>
       <div class="form-group">
         <label for="new-count">New Count</label>
         <input type="number" id="new-count" min="0" max="999999999" placeholder="Enter count">
@@ -685,17 +905,17 @@
       </div>
     </div>
   </div>
-  
+
   <script>
     const baseUrl = window.location.origin;
     let currentUser = null;
     let token = null;
-    
+
     // Check for token in URL or localStorage
     function init() {
       const urlParams = new URLSearchParams(window.location.search);
       const urlToken = urlParams.get('token');
-      
+
       if (urlToken) {
         token = urlToken;
         localStorage.setItem('auth_token', token);
@@ -704,17 +924,17 @@
       } else {
         token = localStorage.getItem('auth_token');
       }
-      
+
       const error = urlParams.get('error');
       if (error) {
         alert('Authentication error: ' + error);
       }
-      
+
       if (token) {
         fetchUser();
       }
     }
-    
+
     // Fetch current user
     async function fetchUser() {
       try {
@@ -723,7 +943,7 @@
             'Authorization': `Bearer ${token}`
           }
         });
-        
+
         if (res.ok) {
           currentUser = await res.json();
           showDashboard();
@@ -736,23 +956,23 @@
         console.error('Error fetching user:', err);
       }
     }
-    
+
     // Show dashboard
     function showDashboard() {
       document.getElementById('login-screen').classList.add('hidden');
       document.getElementById('dashboard').classList.remove('hidden');
-      
+
       // Update user info
       document.getElementById('user-info').innerHTML = `
         <img src="${currentUser.avatar_url}" alt="${currentUser.username}">
         <span>${currentUser.username}</span>
         <button class="btn btn-secondary" onclick="logout()">Logout</button>
       `;
-      
+
       // Setup badge preview
       updateBadgePreview();
     }
-    
+
     // Load dashboard data
     async function loadDashboardData() {
       try {
@@ -761,66 +981,66 @@
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const counters = await countersRes.json();
-        
+
         // Aggregate stats from all counters
         let totalViews = 0;
         let todayViews = 0;
         let weeklyData = [0, 0, 0, 0, 0, 0, 0];
-        
+
         // Fetch stats for each counter and aggregate
         for (const counter of counters) {
           const statsRes = await fetch(`/api/stats/${counter.username}${counter.repo ? `?repo=${counter.repo}` : ''}`);
           const stats = await statsRes.json();
-          
+
           totalViews += stats.total || 0;
           todayViews += stats.today || 0;
-          
+
           if (stats.weekly && Array.isArray(stats.weekly)) {
             stats.weekly.forEach((val, i) => {
               weeklyData[i] += val || 0;
             });
           }
         }
-        
+
         document.getElementById('stat-total').textContent = totalViews.toLocaleString();
         document.getElementById('stat-today').textContent = todayViews.toLocaleString();
         document.getElementById('stat-change').textContent = `+${todayViews} today`;
-        
+
         // Calculate week total
         const weekTotal = weeklyData.reduce((a, b) => a + b, 0);
         document.getElementById('stat-week').textContent = weekTotal.toLocaleString();
-        
+
         // Render chart
         renderChart(weeklyData);
-        
+
         // Update counters table
         updateCountersTable(counters);
-        
+
         // Fetch badge configs
         const badgesRes = await fetch('/api/badges', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const badges = await badgesRes.json();
         document.getElementById('stat-badges').textContent = badges.length || counters.length || '1';
-        
+
       } catch (err) {
         console.error('Error loading dashboard data:', err);
       }
     }
-    
+
     // Update counters table
     function updateCountersTable(counters) {
       const tbody = document.getElementById('counters-table-body');
       const noCounters = document.getElementById('no-counters');
-      
+
       if (counters.length === 0) {
         tbody.innerHTML = '';
         noCounters.classList.remove('hidden');
         return;
       }
-      
+
       noCounters.classList.add('hidden');
-      
+
       tbody.innerHTML = counters.map(c => {
         const badgeUrl = `${baseUrl}/badge?username=${c.username}${c.repo ? `&repo=${c.repo}` : ''}`;
         return `
@@ -844,27 +1064,27 @@
         </tr>
       `}).join('');
     }
-    
+
     // Render weekly chart
     function renderChart(data) {
       const container = document.getElementById('chart-container');
       const max = Math.max(...data, 1);
-      
+
       container.innerHTML = data.map((val, i) => {
         const height = (val / max) * 160;
         return `<div class="chart-bar" style="height: ${height}px" title="${val} views"></div>`;
       }).join('');
-      
+
       // Update day labels
       const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       const today = new Date().getDay();
-      
+
       for (let i = 0; i < 7; i++) {
         const dayIndex = (today - 6 + i + 7) % 7;
         document.getElementById(`chart-day-${i}`).textContent = days[dayIndex];
       }
     }
-    
+
     // Refresh counters
     async function refreshCounters() {
       try {
@@ -877,11 +1097,24 @@
         console.error('Error fetching counters:', err);
       }
     }
-    
-    // Badge preview update
-    function updateBadgePreview() {
+
+    // Debounce function
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // Badge preview update (internal)
+    function _updateBadgePreview() {
       if (!currentUser) return;
-      
+
       const repo = document.getElementById('badge-repo').value;
       const style = document.getElementById('badge-style').value;
       const icon = document.getElementById('badge-icon').value;
@@ -892,222 +1125,531 @@
       const border = document.getElementById('badge-border').value;
       const borderColor = document.getElementById('badge-borderColor').value;
       const format = document.getElementById('badge-format').value;
-      
+
       // Show/hide border color based on border selection
       document.getElementById('border-color-group').style.display = border === 'true' ? 'flex' : 'none';
-      
+
+      // Show/hide custom template editor (SVG)
+      document.getElementById('custom-template-editor').style.display = style === 'custom' ? 'block' : 'none';
+
+      // Show/hide HTML template editor
+      document.getElementById('html-template-editor').style.display = style === 'html' ? 'block' : 'none';
+
+      // Show/hide appropriate preview containers
+      const imgPreview = document.getElementById('badge-preview-img');
+      const htmlPreviewContainer = document.getElementById('html-preview-container');
+      const copyHtmlBtn = document.getElementById('copy-html-btn');
+
+      if (style === 'html') {
+        imgPreview.style.display = 'none';
+        htmlPreviewContainer.style.display = 'block';
+        copyHtmlBtn.style.display = 'inline-flex';
+      } else {
+        imgPreview.style.display = 'block';
+        htmlPreviewContainer.style.display = 'none';
+        copyHtmlBtn.style.display = 'none';
+      }
+
+      // Handle HTML template preview
+      if (style === 'html') {
+        const htmlTemplate = document.getElementById('html-template').value;
+        const cssTemplate = document.getElementById('css-template').value;
+
+        // Replace placeholders with sample values
+        const renderedHtml = htmlTemplate
+          .replace(/\{\{count\}\}/g, '1234')
+          .replace(/\{\{label\}\}/g, label)
+          .replace(/\{\{bg\}\}/g, bg)
+          .replace(/\{\{textColor\}\}/g, textColor);
+
+        const renderedCss = cssTemplate
+          .replace(/\{\{bg\}\}/g, bg)
+          .replace(/\{\{textColor\}\}/g, textColor);
+
+        // Render preview
+        htmlPreviewContainer.innerHTML = `<style>${renderedCss}</style>${renderedHtml}`;
+
+        // Build embed code
+        const embedCode = `<style>${renderedCss}</style>\n${renderedHtml}`;
+        const markdown = `<!-- HTML Badge - Copy and paste this code -->\n${embedCode}`;
+        document.getElementById('badge-markdown').textContent = markdown;
+        return;
+      }
+
+      // Handle custom SVG template preview
+      if (style === 'custom') {
+        const template = document.getElementById('custom-template').value;
+        const renderedSvg = template
+          .replace(/\{\{count\}\}/g, '1234')
+          .replace(/\{\{label\}\}/g, label)
+          .replace(/\{\{bg\}\}/g, bg.replace('#', ''))
+          .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''));
+
+        // Convert SVG to data URL for preview
+        const svgBlob = new Blob([renderedSvg], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(svgBlob);
+        document.getElementById('badge-preview-img').src = url;
+
+        // Build badge URL with encoded template
+        const badgeParams = new URLSearchParams({
+          username: currentUser.username,
+          style: 'custom',
+          label, bg, textColor, countFormat, format,
+          template: btoa(template)
+        });
+
+        if (repo) badgeParams.set('repo', repo);
+
+        const badgeUrl = `${baseUrl}/badge?${badgeParams}`;
+        const markdown = `![${label}](${badgeUrl})`;
+        document.getElementById('badge-markdown').textContent = markdown;
+        return;
+      }
+
       // Build preview URL
       const previewParams = new URLSearchParams({
         count: '1234',
         style, icon, label, bg, textColor, countFormat, border
       });
       if (border === 'true') previewParams.set('borderColor', borderColor);
-      
+
       document.getElementById('badge-preview-img').src = `/preview?${previewParams}`;
-      
+
       // Build badge URL
       const badgeParams = new URLSearchParams({
         username: currentUser.username,
         style, icon, label, bg, textColor, countFormat, border, format
       });
-      
+
       if (border === 'true') badgeParams.set('borderColor', borderColor);
       if (repo) badgeParams.set('repo', repo);
-      
+
       const badgeUrl = `${baseUrl}/badge?${badgeParams}`;
       const markdown = `![${label}](${badgeUrl})`;
-      
+
       document.getElementById('badge-markdown').textContent = markdown;
     }
-    
-    // Copy badge code
-    function copyBadgeCode() {
-      const markdown = document.getElementById('badge-markdown').textContent;
-      navigator.clipboard.writeText(markdown).then(() => {
-        alert('Markdown copied to clipboard!');
-      });
+
+    // Template presets
+    const templatePresets = {
+      default: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="40" rx="8" fill="url(#bg-grad)"/>
+  <text x="20" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="14">{{label}}</text>
+  <text x="150" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="16" font-weight="bold">{{count}}</text>
+</svg>`,
+      minimal: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="28" viewBox="0 0 120 28">
+  <rect width="120" height="28" rx="4" fill="#{{bg}}"/>
+  <text x="10" y="19" fill="#{{textColor}}" font-family="system-ui" font-size="12">{{label}}: {{count}}</text>
+</svg>`,
+      gradient: `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="36" viewBox="0 0 180 36">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="36" rx="18" fill="url(#grad)"/>
+  <text x="16" y="24" fill="#{{textColor}}" font-family="Arial" font-size="13" font-weight="600">{{label}}</text>
+  <text x="130" y="24" fill="#{{textColor}}" font-family="Arial" font-size="14" font-weight="bold">{{count}}</text>
+</svg>`,
+      animated: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
+  <style>
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .count { animation: pulse 2s ease-in-out infinite; }
+  </style>
+  <rect width="200" height="40" rx="6" fill="#{{bg}}"/>
+  <text x="15" y="26" fill="#{{textColor}}" font-family="Arial" font-size="13">{{label}}</text>
+  <text x="140" y="26" fill="#{{textColor}}" font-family="Arial" font-size="15" font-weight="bold" class="count">{{count}}</text>
+</svg>`
+    };
+
+    function resetTemplate() {
+      document.getElementById('custom-template').value = templatePresets.default;
+      updateBadgePreview();
     }
-    
-    // Copy text to clipboard
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('URL copied to clipboard!');
-      }).catch(err => {
-        console.error('Failed to copy:', err);
-        // Fallback
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textarea);
-        alert('URL copied to clipboard!');
-      });
-    }
-    
-    // Copy counter embed
-    function copyCounterEmbed(username, repo) {
-      const params = new URLSearchParams({ username });
-      if (repo) params.set('repo', repo);
-      
-      const url = `${baseUrl}/badge?${params}`;
-      const markdown = `![Profile Views](${url})`;
-      
-      navigator.clipboard.writeText(markdown).then(() => {
-        alert('Markdown copied to clipboard!');
-      });
-    }
-    
-    // Reset counter
-    async function resetCounter(username, repo) {
-      if (!confirm('Are you sure you want to reset this counter? This action cannot be undone.')) {
-        return;
+
+    function loadTemplatePreset(preset) {
+      if (templatePresets[preset]) {
+        document.getElementById('custom-template').value = templatePresets[preset];
+        updateBadgePreview();
       }
-      
-      try {
-        const res = await fetch('/api/reset', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ username, repo: repo || null })
-        });
-        
-        if (res.ok) {
-          alert('Counter reset successfully!');
-          loadDashboardData();
-        } else {
-          const data = await res.json();
-          alert('Error: ' + data.error);
+    }
+
+    // HTML Template Presets
+    const htmlPresets = {
+      default: {
+        html: `<div class="badge-container">
+  <span class="badge-label">{{label}}</span>
+  <span class="badge-count">{{count}}</span>
+</div>`,
+        css: `.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #{{bg}} 0%, #6366f1 100%);
+  border-radius: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.badge-label {
+  color: #{{textColor}};
+  font-size: 14px;
+}
+
+.badge-count {
+  color: #{{textColor}};
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}`
+      },
+      card: {
+        html: `<div class="badge-card">
+  <div class="badge-icon">👁️</div>
+  <div class="badge-content">
+    <div class="badge-label">{{label}}</div>
+    <div class="badge-count">{{count}}</div>
+  </div>
+</div>`,
+        css: `.badge-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #{{bg}};
+  border-radius: 12px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.badge-icon {
+  font-size: 24px;
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-label {
+  color: #{{textColor}};
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.badge-count {
+  color: #{{textColor}};
+  font-size: 20px;
+  font-weight: bold;
+}`
+      },
+      neon: {
+        html: `<div class="neon-badge">
+  <span class="neon-text">{{label}}: {{count}}</span>
+</div>`,
+        css: `.neon-badge {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #0a0a0a;
+  border-radius: 8px;
+  border: 2px solid #{{bg}};
+  box-shadow: 0 0 10px #{{bg}}, 0 0 20px #{{bg}}, inset 0 0 10px rgba(0,255,0,0.1);
+}
+
+.neon-text {
+  color: #{{textColor}};
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #{{bg}}, 0 0 10px #{{bg}};
+}`
+      },
+      modern: {
+        html: `<div class="modern-badge">
+  <span class="modern-label">{{label}}</span>
+  <div class="modern-divider"></div>
+  <span class="modern-count">{{count}}</span>
+</div>`,
+        css: `.modern-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: linear-gradient(90deg, #{{bg}} 0%, #1e1e1e 50%, #1e1e1e 100%);
+  border-radius: 6px;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.modern-label {
+  color: #{{textColor}};
+  font-size: 13px;
+  padding: 8px 12px;
+}
+
+.modern-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.2);
+}
+
+.modern-count {
+  color: #{{textColor}};
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.1);
+}`
+      }
+    };
+
+    function switchHtmlTab(tab) {
+      const htmlTextarea = document.getElementById('html-template');
+      const cssTextarea = document.getElementById('css-template');
+      const tabs = document.querySelectorAll('.html-editor-tabs .tab-btn');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+
+      if (tab === 'html') {
+        htmlTextarea.style.display = 'block';
+        cssTextarea.style.display = 'none';
+      } else {
+        htmlTextarea.style.display = 'none';
+        cssTextarea.style.display = 'block';
+      }
+    }
+
+    function resetHtmlTemplate() {
+      document.getElementById('html-template').value = htmlPresets.default.html;
+      document.getElementById('css-template').value = htmlPresets.default.css;
+      updateBadgePreview();
+    }
+
+    function loadHtmlPreset(preset) {
+      if (htmlPresets[preset]) {
+        document.getElementById('html-template').value = htmlPresets[preset].html;
+        document.getElementById('css-template').value = htmlPresets[preset].css;
+        updateBadgePreview();
+      }
+    }
+
+    function copyHtmlCode() {
+      const style = document.getElementById('badge-style').value;
+      if (style !== 'html') return;
+
+      const label = document.getElementById('badge-label').value;
+      const bg = document.getElementById('badge-bg').value;
+      const textColor = document.getElementById('badge-textColor').value;
+      const htmlTemplate = document.getElementById('html-template').value;
+      const cssTemplate = document.getElementById('css-template').value;
+
+      // Generate embed code with script that fetches count
+      const embedCode = `<!-- Page Views Badge - Embed Code -->
+<style>
+${cssTemplate.replace(/\{\{bg\}\}/g, bg).replace(/\{\{textColor\}\}/g, textColor)}
+</style>
+<div id="page-views-badge">
+${htmlTemplate.replace(/\{\{label\}\}/g, label).replace(/\{\{count\}\}/g, '<span id="pv-count">...</span>')}
+</div>
+<script>
+fetch('${baseUrl}/badge?username=${currentUser?.username}&format=json')
+  .then(r => r.json())
+  .then(d => document.getElementById('pv-count').textContent = d.count);
+<` + `/script>`;
+
+      navigator.clipboard.writeText(embedCode).then(() => {
+        alert('HTML embed code copied to clipboard!');
+      });
+    }
+
+  // Debounced version of updateBadgePreview (150ms delay)
+  const updateBadgePreview = debounce(_updateBadgePreview, 150);
+
+  // Copy badge code
+  function copyBadgeCode() {
+  const markdown = document.getElementById('badge-markdown').textContent;
+  navigator.clipboard.writeText(markdown).then(() => {
+  alert('Markdown copied to clipboard!');
+  });
+  }
+
+  // Copy text to clipboard
+  function copyToClipboard(text) {
+  navigator.clipboard.writeText(text).then(() => {
+  alert('URL copied to clipboard!');
+  }).catch(err => {
+  console.error('Failed to copy:', err);
+  // Fallback
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textarea);
+  alert('URL copied to clipboard!');
+  });
+  }
+
+  // Copy counter embed
+  function copyCounterEmbed(username, repo) {
+  const params = new URLSearchParams({ username });
+  if (repo) params.set('repo', repo);
+
+  const url = `${baseUrl}/badge?${params}`;
+  const markdown = `![Profile Views](${url})`;
+
+  navigator.clipboard.writeText(markdown).then(() => {
+  alert('Markdown copied to clipboard!');
+  });
+  }
+
+  // Reset counter
+  async function resetCounter(username, repo) {
+  if (!confirm('Are you sure you want to reset this counter? This action cannot be undone.')) {
+  return;
+  }
+
+  try {
+  const res = await fetch('/api/reset', {
+  method: 'POST',
+  headers: {
+  'Authorization': `Bearer ${token}`,
+  'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ username, repo: repo || null })
+  });
+
+  if (res.ok) {
+  alert('Counter reset successfully!');
+  loadDashboardData();
+  } else {
+  const data = await res.json();
+  alert('Error: ' + data.error);
+  }
+  } catch (err) {
+  console.error('Error resetting counter:', err);
+  alert('Failed to reset counter');
+  }
+  }
+
+  // Logout
+  function logout() {
+  localStorage.removeItem('auth_token');
+  token = null;
+  currentUser = null;
+  window.location.reload();
+  }
+
+  // Set Count Modal functions
+  function showSetCountModal(username, repo, currentCount) {
+  document.getElementById('new-count').value = currentCount;
+  document.getElementById('set-count-username').value = username;
+  document.getElementById('set-count-repo').value = repo;
+  document.getElementById('set-count-modal').classList.remove('hidden');
+  }
+
+  function closeSetCountModal() {
+  document.getElementById('set-count-modal').classList.add('hidden');
+  }
+
+  async function submitSetCount() {
+  const username = document.getElementById('set-count-username').value;
+  const repo = document.getElementById('set-count-repo').value || null;
+  const count = parseInt(document.getElementById('new-count').value, 10);
+
+  if (isNaN(count) || count < 0) { alert('Please enter a valid non-negative number'); return; } try { const res=await
+    fetch('/api/set-count', { method: 'POST' , headers: { 'Authorization' : `Bearer ${token}`, 'Content-Type'
+    : 'application/json' }, body: JSON.stringify({ username, repo, count }) }); if (res.ok) { const data=await
+    res.json(); alert(`Counter set to ${data.count.toLocaleString()}`); closeSetCountModal(); loadDashboardData(); }
+    else { const data=await res.json(); alert('Error: ' + data.error);
         }
       } catch (err) {
-        console.error('Error resetting counter:', err);
-        alert('Failed to reset counter');
-      }
+        console.error(' Error setting count:', err); alert('Failed to set count'); } } // Close modal on overlay click
+    document.getElementById('set-count-modal').addEventListener('click', (e)=> {
+    if (e.target.id === 'set-count-modal') {
+    closeSetCountModal();
     }
-    
-    // Logout
-    function logout() {
-      localStorage.removeItem('auth_token');
-      token = null;
-      currentUser = null;
-      window.location.reload();
-    }
-    
-    // Set Count Modal functions
-    function showSetCountModal(username, repo, currentCount) {
-      document.getElementById('new-count').value = currentCount;
-      document.getElementById('set-count-username').value = username;
-      document.getElementById('set-count-repo').value = repo;
-      document.getElementById('set-count-modal').classList.remove('hidden');
-    }
-    
-    function closeSetCountModal() {
-      document.getElementById('set-count-modal').classList.add('hidden');
-    }
-    
-    async function submitSetCount() {
-      const username = document.getElementById('set-count-username').value;
-      const repo = document.getElementById('set-count-repo').value || null;
-      const count = parseInt(document.getElementById('new-count').value, 10);
-      
-      if (isNaN(count) || count < 0) {
-        alert('Please enter a valid non-negative number');
-        return;
-      }
-      
-      try {
-        const res = await fetch('/api/set-count', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ username, repo, count })
-        });
-        
-        if (res.ok) {
-          const data = await res.json();
-          alert(`Counter set to ${data.count.toLocaleString()}`);
-          closeSetCountModal();
-          loadDashboardData();
-        } else {
-          const data = await res.json();
-          alert('Error: ' + data.error);
-        }
-      } catch (err) {
-        console.error('Error setting count:', err);
-        alert('Failed to set count');
-      }
-    }
-    
-    // Close modal on overlay click
-    document.getElementById('set-count-modal').addEventListener('click', (e) => {
-      if (e.target.id === 'set-count-modal') {
-        closeSetCountModal();
-      }
     });
-    
+
     // Color picker sync functions
     function hexToFullHex(hex) {
-      hex = hex.replace('#', '');
-      if (hex.length === 3) {
-        return '#' + hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-      }
-      return '#' + hex.padEnd(6, '0');
+    hex = hex.replace('#', '');
+    if (hex.length === 3) {
+    return '#' + hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
     }
-    
+    return '#' + hex.padEnd(6, '0');
+    }
+
     function syncColorPickers() {
-      const bgText = document.getElementById('badge-bg');
-      const bgPicker = document.getElementById('badge-bg-picker');
-      const textColorText = document.getElementById('badge-textColor');
-      const textColorPicker = document.getElementById('badge-textColor-picker');
-      const borderColorText = document.getElementById('badge-borderColor');
-      const borderColorPicker = document.getElementById('badge-borderColor-picker');
-      
-      // Sync text to picker (only if it's a valid single color, not gradient)
-      if (bgText.value && !bgText.value.includes('-')) {
-        try { bgPicker.value = hexToFullHex(bgText.value); } catch(e) {}
-      }
-      if (textColorText.value) {
-        try { textColorPicker.value = hexToFullHex(textColorText.value); } catch(e) {}
-      }
-      if (borderColorText.value) {
-        try { borderColorPicker.value = hexToFullHex(borderColorText.value); } catch(e) {}
-      }
+    const bgText = document.getElementById('badge-bg');
+    const bgPicker = document.getElementById('badge-bg-picker');
+    const textColorText = document.getElementById('badge-textColor');
+    const textColorPicker = document.getElementById('badge-textColor-picker');
+    const borderColorText = document.getElementById('badge-borderColor');
+    const borderColorPicker = document.getElementById('badge-borderColor-picker');
+
+    // Sync text to picker (only if it's a valid single color, not gradient)
+    if (bgText.value && !bgText.value.includes('-')) {
+    try { bgPicker.value = hexToFullHex(bgText.value); } catch (e) { }
     }
-    
+    if (textColorText.value) {
+    try { textColorPicker.value = hexToFullHex(textColorText.value); } catch (e) { }
+    }
+    if (borderColorText.value) {
+    try { borderColorPicker.value = hexToFullHex(borderColorText.value); } catch (e) { }
+    }
+    }
+
     // Picker to text sync
     document.getElementById('badge-bg-picker').addEventListener('input', (e) => {
-      document.getElementById('badge-bg').value = e.target.value.replace('#', '');
-      updateBadgePreview();
+    document.getElementById('badge-bg').value = e.target.value.replace('#', '');
+    updateBadgePreview();
     });
-    
+
     document.getElementById('badge-textColor-picker').addEventListener('input', (e) => {
-      document.getElementById('badge-textColor').value = e.target.value.replace('#', '');
-      updateBadgePreview();
+    document.getElementById('badge-textColor').value = e.target.value.replace('#', '');
+    updateBadgePreview();
     });
-    
+
     document.getElementById('badge-borderColor-picker').addEventListener('input', (e) => {
-      document.getElementById('badge-borderColor').value = e.target.value.replace('#', '');
-      updateBadgePreview();
+    document.getElementById('badge-borderColor').value = e.target.value.replace('#', '');
+    updateBadgePreview();
     });
-    
+
     // Text to picker sync
     document.getElementById('badge-bg').addEventListener('input', syncColorPickers);
     document.getElementById('badge-textColor').addEventListener('input', syncColorPickers);
     document.getElementById('badge-borderColor').addEventListener('input', syncColorPickers);
-    
+
     // Add event listeners for badge creator
-    const badgeInputs = ['badge-repo', 'badge-style', 'badge-icon', 'badge-label', 'badge-bg', 'badge-textColor', 'badge-countFormat', 'badge-border', 'badge-borderColor', 'badge-format'];
+    const badgeInputs = ['badge-repo', 'badge-style', 'badge-icon', 'badge-label', 'badge-bg', 'badge-textColor',
+    'badge-countFormat', 'badge-border', 'badge-borderColor', 'badge-format'];
     badgeInputs.forEach(id => {
-      document.getElementById(id).addEventListener('input', updateBadgePreview);
-      document.getElementById(id).addEventListener('change', updateBadgePreview);
+    document.getElementById(id).addEventListener('input', updateBadgePreview);
+    document.getElementById(id).addEventListener('change', updateBadgePreview);
     });
-    
+
+    // Custom template textarea listener
+    document.getElementById('custom-template').addEventListener('input', debounce(updateBadgePreview, 300));
+
+    // HTML/CSS template textarea listeners
+    document.getElementById('html-template').addEventListener('input', debounce(updateBadgePreview, 300));
+    document.getElementById('css-template').addEventListener('input', debounce(updateBadgePreview, 300));
+
     // Initialize
     init();
-  </script>
+    </script>
 </body>
+
 </html>

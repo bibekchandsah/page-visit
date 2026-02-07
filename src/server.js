@@ -51,7 +51,11 @@ async function start() {
     
     await fastify.register(rateLimit, {
       max: 100,
-      timeWindow: '1 minute'
+      timeWindow: '1 minute',
+      allowList: (req) => {
+        // Exclude preview endpoint from rate limiting
+        return req.url.startsWith('/preview');
+      }
     });
     
     // Serve static files
