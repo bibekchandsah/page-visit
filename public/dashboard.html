@@ -219,49 +219,30 @@
       height: 28px;
     }
     
-    .badge-url-cell {
+    .actions-cell {
       display: flex;
       align-items: center;
       gap: 8px;
-      max-width: 350px;
-    }
-    
-    .badge-url-link {
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    
-    .badge-url-link:hover {
-      color: #5ae;
-    }
-    
-    .badge-url-text {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      flex: 1;
     }
     
     .btn-icon {
       background: transparent;
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 4px;
+      padding: 6px;
       cursor: pointer;
       color: var(--text-secondary);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      text-decoration: none;
     }
     
     .btn-icon:hover {
       background: var(--surface);
-      color: var(--text);
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     /* Badge Creator */
@@ -602,7 +583,6 @@
         <thead>
           <tr>
             <th>Target</th>
-            <th>Badge URL</th>
             <th>Total Views</th>
             <th>Today</th>
             <th>Created</th>
@@ -781,26 +761,17 @@
           return `
           <tr>
             <td>${c.repo ? `${c.username}/${c.repo}` : c.username}</td>
-            <td class="badge-url-cell">
-              <a href="${badgeUrl}" target="_blank" title="Open badge in new tab" class="badge-url-link">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <td>${c.total_views.toLocaleString()}</td>
+            <td>${(c.today || 0).toLocaleString()}</td>
+            <td>${new Date(c.created_at).toLocaleDateString()}</td>
+            <td class="actions-cell">
+              <a href="${badgeUrl}" target="_blank" title="Open badge" class="btn-icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                   <polyline points="15 3 21 3 21 9"/>
                   <line x1="10" y1="14" x2="21" y2="3"/>
                 </svg>
               </a>
-              <span class="badge-url-text" title="${badgeUrl}">${badgeUrl.length > 50 ? badgeUrl.substring(0, 47) + '...' : badgeUrl}</span>
-              <button class="btn-icon" onclick="copyToClipboard('${badgeUrl}')" title="Copy URL">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                </svg>
-              </button>
-            </td>
-            <td>${c.total_views.toLocaleString()}</td>
-            <td>${(c.today || 0).toLocaleString()}</td>
-            <td>${new Date(c.created_at).toLocaleDateString()}</td>
-            <td>
               <button class="btn btn-secondary" onclick="copyCounterEmbed('${c.username}', '${c.repo || ''}')">Copy</button>
               <button class="btn btn-secondary" onclick="showSetCountModal('${c.username}', '${c.repo || ''}', ${c.total_views})">Set</button>
               <button class="btn btn-danger" onclick="resetCounter('${c.username}', '${c.repo || ''}')">Reset</button>
