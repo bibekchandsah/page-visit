@@ -225,6 +225,37 @@ export async function resetCounter(username, repo = null) {
   return true;
 }
 
+// Delete counter completely
+export async function deleteCounter(username, repo = null) {
+  const counters = getCounters();
+  const dailyViews = getDailyViews();
+  const viewLogs = getViewLogs();
+  
+  const counterKey = `${username}:${repo || 'profile'}:main`;
+  
+  // Delete from Redis
+  await setViewCount(counterKey, 0);
+  
+  // Find counter
+  const counter = await counters.findOne({ 
+    username, 
+    repo: repo || null 
+  });
+  
+  if (counter) {
+    // Delete daily views
+    await dailyViews.deleteMany({ counter_id: counter._id });
+    
+    // Delete view logs
+    await viewLogs.deleteMany({ counter_id: counter._id });
+    
+    // Delete counter
+    await counters.deleteOne({ _id: counter._id });
+  }
+  
+  return true;
+}
+
 // Set initial count (for users to resume from a specific number)
 export async function setInitialCount(username, repo = null, count = 0) {
   const counters = getCounters();

@@ -1061,6 +1061,7 @@
             <button class="btn btn-secondary" onclick="copyCounterEmbed('${c.username}', '${c.repo || ''}')">Copy</button>
             <button class="btn btn-secondary" onclick="showSetCountModal('${c.username}', '${c.repo || ''}', ${c.total_views})">Set</button>
             <button class="btn btn-danger" onclick="resetCounter('${c.username}', '${c.repo || ''}')">Reset</button>
+            <button class="btn btn-danger" onclick="deleteCounter('${c.username}', '${c.repo || ''}')">Delete</button>
           </td>
         </tr>
       `}).join('');
@@ -1681,6 +1682,35 @@ fetch('${baseUrl}/badge?username=${currentUser?.username}&format=json')
   } catch (err) {
   console.error('Error resetting counter:', err);
   alert('Failed to reset counter');
+  }
+  }
+
+  // Delete counter
+  async function deleteCounter(username, repo) {
+  if (!confirm('Are you sure you want to DELETE this counter permanently? All data will be lost. This action cannot be undone.')) {
+  return;
+  }
+
+  try {
+  const res = await fetch('/api/counter', {
+  method: 'DELETE',
+  headers: {
+  'Authorization': `Bearer ${token}`,
+  'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ username, repo: repo || null })
+  });
+
+  if (res.ok) {
+  alert('Counter deleted successfully!');
+  loadDashboardData();
+  } else {
+  const data = await res.json();
+  alert('Error: ' + data.error);
+  }
+  } catch (err) {
+  console.error('Error deleting counter:', err);
+  alert('Failed to delete counter');
   }
   }
 

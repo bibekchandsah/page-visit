@@ -1,6 +1,6 @@
 import { ObjectId } from 'mongodb';
 import { getCounters, getBadgeConfigs, getDailyViews } from '../db/mongodb.js';
-import { getStats, resetCounter, setInitialCount } from '../services/counter.js';
+import { getStats, resetCounter, setInitialCount, deleteCounter } from '../services/counter.js';
 import { getViewCount } from '../services/redis.js';
 
 export async function apiRoutes(fastify) {
@@ -56,6 +56,20 @@ export async function apiRoutes(fastify) {
     await resetCounter(username, repo || null);
     
     return { success: true, message: 'Counter reset successfully' };
+  });
+  
+  // Delete counter (authenticated)
+  fastify.delete('/counter', { preHandler: authenticate }, async (request, reply) => {
+    const { username, repo } = request.body || {};
+    
+    // Verify user owns this counter
+    if (request.user.username !== username) {
+      return reply.code(403).send({ error: 'Forbidden' });
+    }
+    
+    await deleteCounter(username, repo || null);
+    
+    return { success: true, message: 'Counter deleted successfully' };
   });
   
   // Set initial count (authenticated) - allows users to resume from a specific number
