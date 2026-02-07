@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Page Views Counter</title>
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -292,6 +310,35 @@
       border-color: var(--accent);
     }
     
+    .color-input-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .color-picker {
+      width: 40px;
+      height: 36px;
+      padding: 2px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      background: var(--bg-tertiary);
+    }
+    
+    .color-picker::-webkit-color-swatch-wrapper {
+      padding: 2px;
+    }
+    
+    .color-picker::-webkit-color-swatch {
+      border-radius: 4px;
+      border: none;
+    }
+    
+    .color-input-wrapper input[type="text"] {
+      flex: 1;
+    }
+    
     .preview-panel {
       background: var(--bg-tertiary);
       border-radius: 8px;
@@ -528,6 +575,7 @@
           <div class="form-group">
             <label>Icon</label>
             <select id="badge-icon">
+              <option value="">None</option>
               <option value="eye">Eye</option>
               <option value="github">GitHub</option>
               <option value="fire">Fire</option>
@@ -541,11 +589,17 @@
           </div>
           <div class="form-group">
             <label>Background</label>
-            <input type="text" id="badge-bg" value="4c1" placeholder="hex or gradient">
+            <div class="color-input-wrapper">
+              <input type="color" id="badge-bg-picker" value="#44cc11" class="color-picker">
+              <input type="text" id="badge-bg" value="4c1" placeholder="hex or gradient">
+            </div>
           </div>
           <div class="form-group">
             <label>Text Color</label>
-            <input type="text" id="badge-textColor" value="fff">
+            <div class="color-input-wrapper">
+              <input type="color" id="badge-textColor-picker" value="#ffffff" class="color-picker">
+              <input type="text" id="badge-textColor" value="fff">
+            </div>
           </div>
           <div class="form-group">
             <label>Count Format</label>
@@ -560,6 +614,21 @@
             <select id="badge-border">
               <option value="false">No Border</option>
               <option value="true">With Border</option>
+            </select>
+          </div>
+          <div class="form-group" id="border-color-group" style="display: none;">
+            <label>Border Color</label>
+            <div class="color-input-wrapper">
+              <input type="color" id="badge-borderColor-picker" value="#333333" class="color-picker">
+              <input type="text" id="badge-borderColor" value="333">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Format</label>
+            <select id="badge-format">
+              <option value="svg">SVG</option>
+              <option value="png">PNG</option>
+              <option value="json">JSON</option>
             </select>
           </div>
         </div>
@@ -821,21 +890,28 @@
       const textColor = document.getElementById('badge-textColor').value;
       const countFormat = document.getElementById('badge-countFormat').value;
       const border = document.getElementById('badge-border').value;
+      const borderColor = document.getElementById('badge-borderColor').value;
+      const format = document.getElementById('badge-format').value;
+      
+      // Show/hide border color based on border selection
+      document.getElementById('border-color-group').style.display = border === 'true' ? 'flex' : 'none';
       
       // Build preview URL
       const previewParams = new URLSearchParams({
         count: '1234',
         style, icon, label, bg, textColor, countFormat, border
       });
+      if (border === 'true') previewParams.set('borderColor', borderColor);
       
       document.getElementById('badge-preview-img').src = `/preview?${previewParams}`;
       
       // Build badge URL
       const badgeParams = new URLSearchParams({
         username: currentUser.username,
-        style, icon, label, bg, textColor, countFormat, border
+        style, icon, label, bg, textColor, countFormat, border, format
       });
       
+      if (border === 'true') badgeParams.set('borderColor', borderColor);
       if (repo) badgeParams.set('repo', repo);
       
       const badgeUrl = `${baseUrl}/badge?${badgeParams}`;
@@ -973,8 +1049,58 @@
       }
     });
     
+    // Color picker sync functions
+    function hexToFullHex(hex) {
+      hex = hex.replace('#', '');
+      if (hex.length === 3) {
+        return '#' + hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+      }
+      return '#' + hex.padEnd(6, '0');
+    }
+    
+    function syncColorPickers() {
+      const bgText = document.getElementById('badge-bg');
+      const bgPicker = document.getElementById('badge-bg-picker');
+      const textColorText = document.getElementById('badge-textColor');
+      const textColorPicker = document.getElementById('badge-textColor-picker');
+      const borderColorText = document.getElementById('badge-borderColor');
+      const borderColorPicker = document.getElementById('badge-borderColor-picker');
+      
+      // Sync text to picker (only if it's a valid single color, not gradient)
+      if (bgText.value && !bgText.value.includes('-')) {
+        try { bgPicker.value = hexToFullHex(bgText.value); } catch(e) {}
+      }
+      if (textColorText.value) {
+        try { textColorPicker.value = hexToFullHex(textColorText.value); } catch(e) {}
+      }
+      if (borderColorText.value) {
+        try { borderColorPicker.value = hexToFullHex(borderColorText.value); } catch(e) {}
+      }
+    }
+    
+    // Picker to text sync
+    document.getElementById('badge-bg-picker').addEventListener('input', (e) => {
+      document.getElementById('badge-bg').value = e.target.value.replace('#', '');
+      updateBadgePreview();
+    });
+    
+    document.getElementById('badge-textColor-picker').addEventListener('input', (e) => {
+      document.getElementById('badge-textColor').value = e.target.value.replace('#', '');
+      updateBadgePreview();
+    });
+    
+    document.getElementById('badge-borderColor-picker').addEventListener('input', (e) => {
+      document.getElementById('badge-borderColor').value = e.target.value.replace('#', '');
+      updateBadgePreview();
+    });
+    
+    // Text to picker sync
+    document.getElementById('badge-bg').addEventListener('input', syncColorPickers);
+    document.getElementById('badge-textColor').addEventListener('input', syncColorPickers);
+    document.getElementById('badge-borderColor').addEventListener('input', syncColorPickers);
+    
     // Add event listeners for badge creator
-    const badgeInputs = ['badge-repo', 'badge-style', 'badge-icon', 'badge-label', 'badge-bg', 'badge-textColor', 'badge-countFormat', 'badge-border'];
+    const badgeInputs = ['badge-repo', 'badge-style', 'badge-icon', 'badge-label', 'badge-bg', 'badge-textColor', 'badge-countFormat', 'badge-border', 'badge-borderColor', 'badge-format'];
     badgeInputs.forEach(id => {
       document.getElementById(id).addEventListener('input', updateBadgePreview);
       document.getElementById(id).addEventListener('change', updateBadgePreview);

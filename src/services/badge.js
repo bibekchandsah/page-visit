@@ -104,8 +104,9 @@ export function generateBadge(options = {}) {
   const styleConfig = styles[style] || styles.flat;
   const formattedCount = formatCount(count, countFormat);
   
-  // Calculate dimensions
-  const iconWidth = 24;
+  // Calculate dimensions - handle no icon case
+  const hasIcon = icon && icon !== 'none' && icons[icon];
+  const iconWidth = hasIcon ? 24 : 0;
   const padding = 10;
   const labelWidth = label.length * 7 + padding * 2;
   const countWidth = formattedCount.length * 8 + padding * 2;
@@ -171,13 +172,15 @@ export function generateBadge(options = {}) {
   const labelSectionWidth = iconWidth + labelWidth;
   svg += `<rect x="${labelSectionWidth}" y="0" width="1" height="${height}" fill="rgba(0,0,0,0.1)"/>`;
   
-  // Icon
-  const iconPath = icons[icon] || icons.eye;
-  const iconY = (height - 16) / 2;
-  svg += `<g transform="translate(${padding}, ${iconY}) scale(0.67)" fill="${txtColor}">${iconPath}</g>`;
+  // Icon (only if present)
+  if (hasIcon) {
+    const iconPath = icons[icon];
+    const iconY = (height - 16) / 2;
+    svg += `<g transform="translate(${padding}, ${iconY}) scale(0.67)" fill="${txtColor}">${iconPath}</g>`;
+  }
   
   // Label text
-  const labelX = iconWidth + padding;
+  const labelX = hasIcon ? iconWidth + padding : padding;
   const textY = height / 2 + 4;
   svg += `<text x="${labelX}" y="${textY}" fill="#${String(txtColor).replace('#', '')}" font-family="${font}" font-size="11" font-weight="400">${escapeXml(label)}</text>`;
   
