@@ -9,7 +9,7 @@
 
 <body>
     <!-- Page Views Badge - Embed Code -->
-    <style>
+    <!-- <style>
         .badge-container {
             display: inline-flex;
             align-items: center;
@@ -58,7 +58,7 @@
             .then(d => {
                 document.getElementById('pv-count').textContent = d.count;
             });
-    </script>
+    </script> -->
 
     <!-- Page Views Badge - Embed Code -->
     <style>
@@ -67,19 +67,19 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: linear-gradient(135deg, #940000 0%, #6366f1 100%);
+            background: linear-gradient(135deg, #5b10cb 0%, #6366f1 100%);
             border-radius: 20px;
             font-family: 'Segoe UI', Arial, sans-serif;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .badge-label {
-            color: #fff;
+            color: #ffffff;
             font-size: 14px;
         }
 
         .badge-count {
-            color: #fff;
+            color: #ffffff;
             font-size: 16px;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.2);
@@ -91,7 +91,7 @@
         .badge-card,
         .neon-badge,
         .modern-badge {
-            border: 2px solid #fdc9c9;
+            border: 2px solid #d5bafd;
         }
 
         .badge-icon-emoji {
@@ -100,12 +100,12 @@
     </style>
     <div id="page-views-badge">
         <div class="badge-container">
-            <span class="badge-icon-emoji">👁️</span><span class="badge-label">Profile</span>
+            <span class="badge-icon-emoji">❤️</span><span class="badge-label">No. of Visitor</span>
             <span class="badge-count"><span id="pv-count">...</span></span>
         </div>
     </div>
     <script>
-        fetch('http://localhost:3000/badge?username=bebedudu&format=json')
+        fetch('http://localhost:3000/badge?username=bebedudu&repo=htmltesting&format=json')
             .then(r => r.json())
             .then(d => {
                 const n = d.count;
@@ -113,6 +113,7 @@
                 document.getElementById('pv-count').textContent = formatted;
             });
     </script>
+    <img src="http://localhost:3000/badge?username=bebedudu&style=custom&icon=heart&label=No.+of+Visitor&bg=5b10cb&textColor=ffffff&countFormat=short&format=svg&template=PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCAyMjAgNDAiPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJiZy1ncmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIwJSI%2BCiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiN7e2JnfX0iLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjNjM2NmYxIi8%2BCiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8cmVjdCB3aWR0aD0iMjIwIiBoZWlnaHQ9IjQwIiByeD0iOCIgZmlsbD0idXJsKCNiZy1ncmFkKSIvPgogIHt7aWNvbn19CiAgPHRleHQgeD0ie3tsYWJlbFh9fSIgeT0iMjYiIGZpbGw9IiN7e3RleHRDb2xvcn19IiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPnt7bGFiZWx9fTwvdGV4dD4KICA8dGV4dCB4PSIxNzAiIHk9IjI2IiBmaWxsPSIje3t0ZXh0Q29sb3J9fSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCI%2Be3tjb3VudH19PC90ZXh0Pgo8L3N2Zz4%3D&repo=htmltesting" alt="Page Views Badge">
 </body>
 
 </html>

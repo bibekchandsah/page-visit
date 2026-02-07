@@ -695,8 +695,8 @@
       <div class="badge-creator">
         <div class="form-grid">
           <div class="form-group">
-            <label>Repository (optional)</label>
-            <input type="text" id="badge-repo" placeholder="repo-name">
+            <label>Repository/Page Name</label>
+            <input type="text" id="badge-repo" placeholder="repo/page-name">
           </div>
           <div class="form-group">
             <label>Style</label>
@@ -1552,6 +1552,7 @@
       const style = document.getElementById('badge-style').value;
       if (style !== 'html') return;
 
+      const repo = document.getElementById('badge-repo').value;
       const label = document.getElementById('badge-label').value;
       const bg = document.getElementById('badge-bg').value;
       const textColor = document.getElementById('badge-textColor').value;
@@ -1595,6 +1596,8 @@
   document.getElementById('pv-count').textContent = formatted;` : `
   document.getElementById('pv-count').textContent = d.count;`;
 
+      const repoParam = repo ? `&repo=${encodeURIComponent(repo)}` : '';
+
       const embedCode = `<!-- Page Views Badge - Embed Code -->
 <style>
 ${renderedCss}${borderCss}
@@ -1604,7 +1607,7 @@ ${renderedCss}${borderCss}
 ${renderedHtml}
 </div>
 <script>
-fetch('${baseUrl}/badge?username=${currentUser?.username}&format=json')
+fetch('${baseUrl}/badge?username=${currentUser?.username}${repoParam}&format=json')
   .then(r => r.json())
   .then(d => {${formatFunc}
   });
