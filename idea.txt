@@ -5,6 +5,8 @@ let user choose color scheme
 let user choose icon style (outline, filled, etc)
 let user choose to display total views or unique views
 let user customize the style
+add delete option in dashboard
+add option to reset count
 
 
 
@@ -63,3 +65,4 @@ git push -u origin main
 ![Profile Views](https://page-visit-counter.onrender.com/badge?username=bebedudu&repo=bibekchandsah)
 
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+Get-NetTCPConnection -LocalPort 3000 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }

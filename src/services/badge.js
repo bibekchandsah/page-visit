@@ -4,7 +4,12 @@ const icons = {
   github: '<path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>',
   fire: '<path fill="currentColor" d="M11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.47-.3 1.42-1.06 1.42-1.06s1.79 1.36 1.79 3.2c0 2.44-1.12 4.12-2.8 4.12zm.29-16s1.18 2.15 1.18 4.04c0 1.73-1.02 3.14-2.28 3.52.01 0 .01 0 0 0-1.89.54-3.27 2.2-3.27 4.3C7.63 18.08 9.91 21 12.5 21c3.22 0 5.83-3.67 5.83-7.18 0-5.89-6.33-9.82-6.33-9.82z"/>',
   star: '<path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>',
-  chart: '<path fill="currentColor" d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-4h2v14h-2V7z"/>'
+  chart: '<path fill="currentColor" d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4-4h2v18h-2V3zm4 8h2v10h-2V11zm4-4h2v14h-2V7z"/>',
+  heart: '<path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
+  rocket: '<path fill="currentColor" d="M12 2.5c0 0-6.5 5-6.5 13.5 0 2.5 1.5 4.5 3.5 5.5l3-3 3 3c2-1 3.5-3 3.5-5.5C18.5 7.5 12 2.5 12 2.5zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM5 21l2-2.5c-.5-.5-1-1.2-1.5-2L5 21zm14 0l-.5-4.5c-.5.8-1 1.5-1.5 2L19 21z"/>',
+  user: '<path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
+  code: '<path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>',
+  globe: '<path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>'
 };
 
 // Style templates
@@ -228,17 +233,34 @@ export function generateCustomBadge(template, options = {}) {
     label = 'Views',
     bg = '4c1',
     textColor = 'fff',
+    icon = 'eye',
     countFormat = 'normal'
   } = options;
   
   const formattedCount = formatCount(count, countFormat);
+  
+  // Generate icon SVG for custom template - center vertically based on badge height
+  const iconPath = icons[icon] || '';
+  const iconColor = textColor.startsWith('#') ? textColor : `#${textColor}`;
+  
+  // Extract height from template for proper icon centering
+  const heightMatch = template.match(/height="(\d+)"/);
+  const badgeHeight = heightMatch ? parseInt(heightMatch[1]) : 40;
+  const iconSize = 16; // 24x24 scaled by 0.67
+  const yOffset = (badgeHeight - iconSize) / 2;
+  
+  const hasIcon = icon && icon !== 'none' && iconPath;
+  const iconSvg = hasIcon ? `<g transform="translate(10, ${yOffset}) scale(0.67)" fill="${iconColor}">${iconPath}</g>` : '';
+  const labelX = hasIcon ? '32' : '12';
   
   // Replace placeholders in template
   let svg = template
     .replace(/\{\{count\}\}/g, escapeXml(formattedCount))
     .replace(/\{\{label\}\}/g, escapeXml(label))
     .replace(/\{\{bg\}\}/g, bg.replace('#', ''))
-    .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''));
+    .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''))
+    .replace(/\{\{icon\}\}/g, iconSvg)
+    .replace(/\{\{labelX\}\}/g, labelX);
   
   // Basic sanitization - remove script tags and event handlers
   svg = svg

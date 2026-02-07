@@ -50,6 +50,7 @@ export async function badgeRoutes(fastify) {
           label,
           bg,
           textColor,
+          icon,
           countFormat
         });
         

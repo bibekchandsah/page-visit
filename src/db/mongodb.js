@@ -13,12 +13,14 @@ let dailyViews;
 let badgeConfigs;
 let viewLogs;
 
+let dbConnected = false;
+
 export async function connectDatabase() {
   try {
     // Connection options for better stability
     client = new MongoClient(mongoUrl, {
-      serverSelectionTimeoutMS: 30000,
-      connectTimeoutMS: 30000,
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
       socketTimeoutMS: 45000,
       retryWrites: true,
       retryReads: true,
@@ -46,12 +48,19 @@ export async function connectDatabase() {
     await viewLogs.createIndex({ counter_id: 1, visitor_hash: 1 });
     await badgeConfigs.createIndex({ user_id: 1 });
     
+    dbConnected = true;
     console.log('MongoDB connected successfully');
     return db;
   } catch (err) {
-    console.error('MongoDB connection error:', err);
-    throw err;
+    console.error('MongoDB connection error:', err.message);
+    console.warn('⚠️ Server starting without database - preview features will work, but auth/counters will not');
+    dbConnected = false;
+    return null;
   }
+}
+
+export function isDbConnected() {
+  return dbConnected;
 }
 
 export async function closeDatabase() {

@@ -714,11 +714,16 @@
             <label>Icon</label>
             <select id="badge-icon">
               <option value="">None</option>
-              <option value="eye">Eye</option>
-              <option value="github">GitHub</option>
-              <option value="fire">Fire</option>
-              <option value="star">Star</option>
-              <option value="chart">Chart</option>
+              <option value="eye">Eye 👁️ </option>
+              <option value="github">GitHub 🐙</option>
+              <option value="fire">Fire 🔥</option>
+              <option value="star">Star ⭐</option>
+              <option value="chart">Chart 📊</option>
+              <option value="heart">Heart ❤️</option>
+              <option value="rocket">Rocket 🚀</option>
+              <option value="user">User 👤</option>
+              <option value="code">Code 💻</option>
+              <option value="globe">Globe 🌐</option>
             </select>
           </div>
           <div class="form-group">
@@ -809,38 +814,34 @@
             <button class="tab-btn active" onclick="switchHtmlTab('html')">HTML</button>
             <button class="tab-btn" onclick="switchHtmlTab('css')">CSS</button>
           </div>
-          <textarea id="html-template" class="template-textarea" spellcheck="false">
-<div class="badge-container">
-  <span class="badge-label">{{label}}</span>
+          <textarea id="html-template" class="template-textarea" spellcheck="false"><div class="badge-container">
+  {{icon}}<span class="badge-label">{{label}}</span>
   <span class="badge-count">{{count}}</span>
-</div>
-          </textarea>
-          <textarea id="css-template" class="template-textarea" spellcheck="false" style="display: none;">
-.badge-container {
+</div></textarea>
+          <textarea id="css-template" class="template-textarea" spellcheck="false" style="display: none;">.badge-container {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: linear-gradient(135deg, #{{bg}} 0%, #6366f1 100%);
+  background: linear-gradient(135deg, {{bg}} 0%, #6366f1 100%);
   border-radius: 20px;
   font-family: 'Segoe UI', Arial, sans-serif;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .badge-label {
-  color: #{{textColor}};
+  color: {{textColor}};
   font-size: 14px;
 }
 
 .badge-count {
-  color: #{{textColor}};
+  color: {{textColor}};
   font-size: 16px;
   font-weight: bold;
   background: rgba(255,255,255,0.2);
   padding: 4px 10px;
   border-radius: 12px;
-}
-          </textarea>
+}</textarea>
           <div class="template-actions">
             <button class="btn btn-secondary" onclick="resetHtmlTemplate()">Reset to Default</button>
             <button class="btn btn-secondary" onclick="loadHtmlPreset('card')">Card Style</button>
@@ -1098,6 +1099,233 @@
       }
     }
 
+    // Icon emoji mapping for HTML templates
+    const iconEmojis = {
+      none: '',
+      eye: '👁️',
+      star: '⭐',
+      fire: '🔥',
+      chart: '📊',
+      heart: '❤️',
+      rocket: '🚀',
+      user: '👤',
+      code: '💻',
+      globe: '🌐'
+    };
+
+    // Icon SVG paths for Custom SVG templates
+    const iconSvgPaths = {
+      none: '',
+      eye: '<path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>',
+      github: '<path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>',
+      fire: '<path fill="currentColor" d="M11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.47-.3 1.42-.75 1.42-.78 0-.05-.01-.09-.01-.14-.26.02-.67.14-1.48.42C9.14 12.87 6.5 13.93 6.5 17c0 2.76 2.24 5 5 5 2.76 0 5-2.24 5-5 0-.64-.13-1.24-.35-1.8-.66 1.66-2.39 2.8-4.44 2.8zm6.79-13.47C18.5 4.5 17.64 3.5 16.5 3.5c-.8 0-1.52.38-2.02 1L11.5 8.17V5c0-2.76-2.24-5-5-5S1.5 2.24 1.5 5v6.8l-1 .7v.5c0 2.4 1.35 4.55 3.5 5.67V12.5l2-.5c-.73-.3-1.4-.75-2-1.32-.1-.09-.18-.2-.27-.3-.02-.01-.02-.03-.03-.04 0-.01-.01-.01-.01-.02-.22-.31-.42-.64-.58-.99-.04-.1-.08-.2-.11-.3-.02-.04-.03-.08-.04-.12-.11-.31-.2-.64-.26-.98 0-.05-.01-.09-.02-.14-.05-.35-.08-.7-.08-1.07 0-3.52 2.24-6.57 5.4-7.82.35-.13.71-.24 1.08-.32.12-.03.24-.05.37-.07.24-.04.49-.07.74-.09.13-.01.25-.02.38-.02.76 0 1.49.11 2.18.31.23.07.46.14.68.23.11.04.22.09.33.14.22.1.43.21.63.33.1.06.2.12.3.19.2.14.4.29.58.45l.18.15c.18.17.36.35.52.54l.08.09c.08.09.15.19.22.29.08.1.15.2.22.31.07.1.13.21.19.32.06.11.12.22.17.34.06.12.11.25.16.37.05.13.09.26.13.4.04.14.07.28.09.43.03.15.05.31.06.46.01.15.02.31.02.47 0 1.07-.25 2.07-.69 2.97z"/>',
+      star: '<path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>',
+      chart: '<path fill="currentColor" d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>',
+      heart: '<path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
+      rocket: '<path fill="currentColor" d="M12.5 2.4c-1.3 1.1-2.3 2.5-3 4.1-.6 1.4-.9 2.9-1 4.5H5c.3-2.9 1.3-5.5 3-7.8.2-.3.5-.5.8-.8h3.7zm-3 14.5H5c.3 2.9 1.3 5.5 3 7.8.2.3.5.5.8.8h3.7c-1.3-1.1-2.3-2.5-3-4.1-.6-1.5-.9-3-.5-4.5zm10-14.5c1.3 1.1 2.3 2.5 3 4.1.6 1.4.9 2.9 1 4.5h-3.5c-.1-1.6-.4-3.1-1-4.5-.7-1.6-1.7-3-3-4.1h3.5zm3 14.5h-3.5c-.1 1.6-.4 3.1-1 4.5-.7 1.6-1.7 3-3 4.1h3.7c.3-.2.6-.5.8-.8 1.7-2.3 2.7-4.9 3-7.8zM12 6c1.7 0 3.2.7 4.2 1.8 1.1 1.1 1.8 2.5 1.8 4.2s-.7 3.2-1.8 4.2c-1.1 1.1-2.5 1.8-4.2 1.8s-3.2-.7-4.2-1.8C6.7 15.2 6 13.7 6 12s.7-3.2 1.8-4.2C8.9 6.7 10.3 6 12 6z"/>',
+      user: '<path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
+      code: '<path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>',
+      globe: '<path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>'
+    };
+
+    // Function to get icon SVG for custom templates
+    // Height parameter helps center the icon vertically
+    function getIconSvg(iconName, color = '#fff', height = 40) {
+      if (!iconName || iconName === 'none') return '';
+      const path = iconSvgPaths[iconName] || '';
+      if (!path) return '';
+      // Icon is 24x24, scaled to ~16x16 (0.67). Center it vertically.
+      const iconSize = 16;
+      const yOffset = (height - iconSize) / 2;
+      return `<g transform="translate(10, ${yOffset}) scale(0.67)" fill="${color}">${path}</g>`;
+    }
+
+    // Format count based on countFormat setting
+    function formatCountValue(count, format) {
+      const num = parseInt(count);
+      if (format === 'short') {
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+      }
+      return count;
+    }
+
+    // HTML Template Presets
+    const htmlPresets = {
+      default: {
+        html: `<div class="badge-container">
+  {{icon}}<span class="badge-label">{{label}}</span>
+  <span class="badge-count">{{count}}</span>
+</div>`,
+        css: `.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, {{bg}} 0%, #6366f1 100%);
+  border-radius: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.badge-label {
+  color: {{textColor}};
+  font-size: 14px;
+}
+
+.badge-count {
+  color: {{textColor}};
+  font-size: 16px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+}`
+      },
+      card: {
+        html: `<div class="badge-card">
+  <div class="badge-icon">{{icon}}</div>
+  <div class="badge-content">
+    <div class="badge-label">{{label}}</div>
+    <div class="badge-count">{{count}}</div>
+  </div>
+</div>`,
+        css: `.badge-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: {{bg}};
+  border-radius: 12px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.badge-icon {
+  font-size: 24px;
+}
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.badge-label {
+  color: {{textColor}};
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.badge-count {
+  color: {{textColor}};
+  font-size: 20px;
+  font-weight: bold;
+}`
+      },
+      neon: {
+        html: `<div class="neon-badge">
+  {{icon}}<span class="neon-text">{{label}}: {{count}}</span>
+</div>`,
+        css: `.neon-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 24px;
+  background: #0a0a0a;
+  border-radius: 8px;
+  border: 2px solid {{bg}};
+  box-shadow: 0 0 10px {{bg}}, 0 0 20px {{bg}}, inset 0 0 10px rgba(0,255,0,0.1);
+}
+
+.neon-text {
+  color: {{textColor}};
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0 0 5px {{bg}}, 0 0 10px {{bg}};
+}`
+      },
+      modern: {
+        html: `<div class="modern-badge">
+  {{icon}}<span class="modern-label">{{label}}</span>
+  <div class="modern-divider"></div>
+  <span class="modern-count">{{count}}</span>
+</div>`,
+        css: `.modern-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0;
+  background: linear-gradient(90deg, {{bg}} 0%, #1e1e1e 50%, #1e1e1e 100%);
+  border-radius: 6px;
+  font-family: system-ui, sans-serif;
+  overflow: hidden;
+}
+
+.modern-label {
+  color: {{textColor}};
+  font-size: 13px;
+  padding: 8px 12px;
+}
+
+.modern-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(255,255,255,0.2);
+}
+
+.modern-count {
+  color: {{textColor}};
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.1);
+}`
+      }
+    };
+
+    // SVG Template presets
+    const templatePresets = {
+      default: `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="40" rx="8" fill="url(#bg-grad)"/>
+  {{icon}}
+  <text x="{{labelX}}" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="14">{{label}}</text>
+  <text x="170" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="16" font-weight="bold">{{count}}</text>
+</svg>`,
+      minimal: `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="28" viewBox="0 0 150 28">
+  <rect width="150" height="28" rx="4" fill="#{{bg}}"/>
+  {{icon}}
+  <text x="{{labelX}}" y="19" fill="#{{textColor}}" font-family="system-ui" font-size="12">{{label}}: {{count}}</text>
+</svg>`,
+      gradient: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="36" viewBox="0 0 200 36">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="36" rx="18" fill="url(#grad)"/>
+  {{icon}}
+  <text x="{{labelX}}" y="24" fill="#{{textColor}}" font-family="Arial" font-size="13" font-weight="600">{{label}}</text>
+  <text x="150" y="24" fill="#{{textColor}}" font-family="Arial" font-size="14" font-weight="bold">{{count}}</text>
+</svg>`,
+      animated: `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40">
+  <style>
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .count { animation: pulse 2s ease-in-out infinite; }
+  </style>
+  <rect width="220" height="40" rx="6" fill="#{{bg}}"/>
+  {{icon}}
+  <text x="{{labelX}}" y="26" fill="#{{textColor}}" font-family="Arial" font-size="13">{{label}}</text>
+  <text x="160" y="26" fill="#{{textColor}}" font-family="Arial" font-size="15" font-weight="bold" class="count">{{count}}</text>
+</svg>`
+    };
+
     // Debounce function
     function debounce(func, wait) {
       let timeout;
@@ -1132,8 +1360,26 @@
       // Show/hide custom template editor (SVG)
       document.getElementById('custom-template-editor').style.display = style === 'custom' ? 'block' : 'none';
 
+      // Auto-load default SVG template if empty or missing icon placeholder
+      if (style === 'custom') {
+        const svgTextarea = document.getElementById('custom-template');
+        if (!svgTextarea.value || !svgTextarea.value.includes('{{icon}}')) {
+          svgTextarea.value = templatePresets.default;
+        }
+      }
+
       // Show/hide HTML template editor
       document.getElementById('html-template-editor').style.display = style === 'html' ? 'block' : 'none';
+      
+      // Auto-load default HTML template if empty or first time
+      if (style === 'html') {
+        const htmlTextarea = document.getElementById('html-template');
+        const cssTextarea = document.getElementById('css-template');
+        if (!htmlTextarea.value || !htmlTextarea.value.includes('{{')) {
+          htmlTextarea.value = htmlPresets.default.html;
+          cssTextarea.value = htmlPresets.default.css;
+        }
+      }
 
       // Show/hide appropriate preview containers
       const imgPreview = document.getElementById('badge-preview-img');
@@ -1154,23 +1400,41 @@
       if (style === 'html') {
         const htmlTemplate = document.getElementById('html-template').value;
         const cssTemplate = document.getElementById('css-template').value;
+        const iconEmoji = iconEmojis[icon] || '';
+        const iconHtml = iconEmoji ? `<span class="badge-icon-emoji">${iconEmoji}</span>` : '';
+        const formattedCount = formatCountValue('1234', countFormat);
+        
+        // Ensure colors have # prefix
+        const bgColor = bg.startsWith('#') ? bg : '#' + bg;
+        const txtColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+        const brdColor = borderColor.startsWith('#') ? borderColor : '#' + borderColor;
+        const borderStyle = border === 'true' ? `border: 2px solid ${brdColor};` : '';
 
         // Replace placeholders with sample values
         const renderedHtml = htmlTemplate
-          .replace(/\{\{count\}\}/g, '1234')
+          .replace(/\{\{count\}\}/g, formattedCount)
           .replace(/\{\{label\}\}/g, label)
-          .replace(/\{\{bg\}\}/g, bg)
-          .replace(/\{\{textColor\}\}/g, textColor);
+          .replace(/\{\{bg\}\}/g, bgColor)
+          .replace(/\{\{textColor\}\}/g, txtColor)
+          .replace(/\{\{icon\}\}/g, iconHtml)
+          .replace(/\{\{borderStyle\}\}/g, borderStyle)
+          .replace(/\{\{borderColor\}\}/g, brdColor);
 
         const renderedCss = cssTemplate
-          .replace(/\{\{bg\}\}/g, bg)
-          .replace(/\{\{textColor\}\}/g, textColor);
+          .replace(/\{\{bg\}\}/g, bgColor)
+          .replace(/\{\{textColor\}\}/g, txtColor)
+          .replace(/\{\{borderColor\}\}/g, brdColor);
+
+        // Add border style to container if enabled
+        const borderCss = border === 'true' ? `
+.badge-container, .badge-card, .neon-badge, .modern-badge { ${borderStyle} }` : '';
 
         // Render preview
-        htmlPreviewContainer.innerHTML = `<style>${renderedCss}</style>${renderedHtml}`;
+        htmlPreviewContainer.innerHTML = `<style>${renderedCss}${borderCss}
+.badge-icon-emoji { margin-right: 6px; }</style>${renderedHtml}`;
 
         // Build embed code
-        const embedCode = `<style>${renderedCss}</style>\n${renderedHtml}`;
+        const embedCode = `<style>${renderedCss}${borderCss}\n.badge-icon-emoji { margin-right: 6px; }</style>\n${renderedHtml}`;
         const markdown = `<!-- HTML Badge - Copy and paste this code -->\n${embedCode}`;
         document.getElementById('badge-markdown').textContent = markdown;
         return;
@@ -1179,11 +1443,20 @@
       // Handle custom SVG template preview
       if (style === 'custom') {
         const template = document.getElementById('custom-template').value;
+        const iconColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+        // Extract height from template for proper icon centering
+        const heightMatch = template.match(/height="(\d+)"/);
+        const badgeHeight = heightMatch ? parseInt(heightMatch[1]) : 40;
+        const iconSvg = getIconSvg(icon, iconColor, badgeHeight);
+        const hasIcon = icon && icon !== 'none';
+        const labelX = hasIcon ? '32' : '12';
         const renderedSvg = template
           .replace(/\{\{count\}\}/g, '1234')
           .replace(/\{\{label\}\}/g, label)
           .replace(/\{\{bg\}\}/g, bg.replace('#', ''))
-          .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''));
+          .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''))
+          .replace(/\{\{icon\}\}/g, iconSvg)
+          .replace(/\{\{labelX\}\}/g, labelX);
 
         // Convert SVG to data URL for preview
         const svgBlob = new Blob([renderedSvg], { type: 'image/svg+xml' });
@@ -1194,7 +1467,7 @@
         const badgeParams = new URLSearchParams({
           username: currentUser.username,
           style: 'custom',
-          label, bg, textColor, countFormat, format,
+          icon, label, bg, textColor, countFormat, format,
           template: btoa(template)
         });
 
@@ -1231,45 +1504,6 @@
     }
 
     // Template presets
-    const templatePresets = {
-      default: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
-  <defs>
-    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#{{bg}}"/>
-      <stop offset="100%" stop-color="#6366f1"/>
-    </linearGradient>
-  </defs>
-  <rect width="200" height="40" rx="8" fill="url(#bg-grad)"/>
-  <text x="20" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="14">{{label}}</text>
-  <text x="150" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="16" font-weight="bold">{{count}}</text>
-</svg>`,
-      minimal: `<svg xmlns="http://www.w3.org/2000/svg" width="120" height="28" viewBox="0 0 120 28">
-  <rect width="120" height="28" rx="4" fill="#{{bg}}"/>
-  <text x="10" y="19" fill="#{{textColor}}" font-family="system-ui" font-size="12">{{label}}: {{count}}</text>
-</svg>`,
-      gradient: `<svg xmlns="http://www.w3.org/2000/svg" width="180" height="36" viewBox="0 0 180 36">
-  <defs>
-    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#{{bg}}"/>
-      <stop offset="50%" stop-color="#8b5cf6"/>
-      <stop offset="100%" stop-color="#ec4899"/>
-    </linearGradient>
-  </defs>
-  <rect width="180" height="36" rx="18" fill="url(#grad)"/>
-  <text x="16" y="24" fill="#{{textColor}}" font-family="Arial" font-size="13" font-weight="600">{{label}}</text>
-  <text x="130" y="24" fill="#{{textColor}}" font-family="Arial" font-size="14" font-weight="bold">{{count}}</text>
-</svg>`,
-      animated: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="40" viewBox="0 0 200 40">
-  <style>
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-    .count { animation: pulse 2s ease-in-out infinite; }
-  </style>
-  <rect width="200" height="40" rx="6" fill="#{{bg}}"/>
-  <text x="15" y="26" fill="#{{textColor}}" font-family="Arial" font-size="13">{{label}}</text>
-  <text x="140" y="26" fill="#{{textColor}}" font-family="Arial" font-size="15" font-weight="bold" class="count">{{count}}</text>
-</svg>`
-    };
-
     function resetTemplate() {
       document.getElementById('custom-template').value = templatePresets.default;
       updateBadgePreview();
@@ -1281,137 +1515,6 @@
         updateBadgePreview();
       }
     }
-
-    // HTML Template Presets
-    const htmlPresets = {
-      default: {
-        html: `<div class="badge-container">
-  <span class="badge-label">{{label}}</span>
-  <span class="badge-count">{{count}}</span>
-</div>`,
-        css: `.badge-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: linear-gradient(135deg, #{{bg}} 0%, #6366f1 100%);
-  border-radius: 20px;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.badge-label {
-  color: #{{textColor}};
-  font-size: 14px;
-}
-
-.badge-count {
-  color: #{{textColor}};
-  font-size: 16px;
-  font-weight: bold;
-  background: rgba(255,255,255,0.2);
-  padding: 4px 10px;
-  border-radius: 12px;
-}`
-      },
-      card: {
-        html: `<div class="badge-card">
-  <div class="badge-icon">👁️</div>
-  <div class="badge-content">
-    <div class="badge-label">{{label}}</div>
-    <div class="badge-count">{{count}}</div>
-  </div>
-</div>`,
-        css: `.badge-card {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 20px;
-  background: #{{bg}};
-  border-radius: 12px;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-.badge-icon {
-  font-size: 24px;
-}
-
-.badge-content {
-  display: flex;
-  flex-direction: column;
-}
-
-.badge-label {
-  color: #{{textColor}};
-  font-size: 12px;
-  opacity: 0.8;
-}
-
-.badge-count {
-  color: #{{textColor}};
-  font-size: 20px;
-  font-weight: bold;
-}`
-      },
-      neon: {
-        html: `<div class="neon-badge">
-  <span class="neon-text">{{label}}: {{count}}</span>
-</div>`,
-        css: `.neon-badge {
-  display: inline-block;
-  padding: 10px 24px;
-  background: #0a0a0a;
-  border-radius: 8px;
-  border: 2px solid #{{bg}};
-  box-shadow: 0 0 10px #{{bg}}, 0 0 20px #{{bg}}, inset 0 0 10px rgba(0,255,0,0.1);
-}
-
-.neon-text {
-  color: #{{textColor}};
-  font-family: 'Courier New', monospace;
-  font-size: 16px;
-  font-weight: bold;
-  text-shadow: 0 0 5px #{{bg}}, 0 0 10px #{{bg}};
-}`
-      },
-      modern: {
-        html: `<div class="modern-badge">
-  <span class="modern-label">{{label}}</span>
-  <div class="modern-divider"></div>
-  <span class="modern-count">{{count}}</span>
-</div>`,
-        css: `.modern-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  background: linear-gradient(90deg, #{{bg}} 0%, #1e1e1e 50%, #1e1e1e 100%);
-  border-radius: 6px;
-  font-family: system-ui, sans-serif;
-  overflow: hidden;
-}
-
-.modern-label {
-  color: #{{textColor}};
-  font-size: 13px;
-  padding: 8px 12px;
-}
-
-.modern-divider {
-  width: 1px;
-  height: 20px;
-  background: rgba(255,255,255,0.2);
-}
-
-.modern-count {
-  color: #{{textColor}};
-  font-size: 14px;
-  font-weight: bold;
-  padding: 8px 14px;
-  background: rgba(255,255,255,0.1);
-}`
-      }
-    };
 
     function switchHtmlTab(tab) {
       const htmlTextarea = document.getElementById('html-template');
@@ -1451,21 +1554,59 @@
       const label = document.getElementById('badge-label').value;
       const bg = document.getElementById('badge-bg').value;
       const textColor = document.getElementById('badge-textColor').value;
+      const icon = document.getElementById('badge-icon').value;
+      const countFormat = document.getElementById('badge-countFormat').value;
+      const border = document.getElementById('badge-border').value;
+      const borderColor = document.getElementById('badge-borderColor').value;
       const htmlTemplate = document.getElementById('html-template').value;
       const cssTemplate = document.getElementById('css-template').value;
 
+      // Ensure colors have # prefix
+      const bgColor = bg.startsWith('#') ? bg : '#' + bg;
+      const txtColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+      const brdColor = borderColor.startsWith('#') ? borderColor : '#' + borderColor;
+
+      const iconEmoji = iconEmojis[icon] || '';
+      const iconHtml = iconEmoji ? `<span class="badge-icon-emoji">${iconEmoji}</span>` : '';
+      const borderStyle = border === 'true' ? `border: 2px solid ${brdColor};` : '';
+      const borderCss = border === 'true' ? `\n.badge-container, .badge-card, .neon-badge, .modern-badge { ${borderStyle} }` : '';
+
+      // Replace placeholders in CSS
+      const renderedCss = cssTemplate
+        .replace(/\{\{bg\}\}/g, bgColor)
+        .replace(/\{\{textColor\}\}/g, txtColor)
+        .replace(/\{\{borderColor\}\}/g, brdColor);
+
+      // Replace placeholders in HTML (count will be fetched dynamically)
+      const renderedHtml = htmlTemplate
+        .replace(/\{\{label\}\}/g, label)
+        .replace(/\{\{count\}\}/g, '<span id="pv-count">...</span>')
+        .replace(/\{\{bg\}\}/g, bgColor)
+        .replace(/\{\{textColor\}\}/g, txtColor)
+        .replace(/\{\{icon\}\}/g, iconHtml)
+        .replace(/\{\{borderStyle\}\}/g, borderStyle)
+        .replace(/\{\{borderColor\}\}/g, brdColor);
+
       // Generate embed code with script that fetches count
+      const formatFunc = countFormat === 'short' ? `
+  const n = d.count;
+  const formatted = n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
+  document.getElementById('pv-count').textContent = formatted;` : `
+  document.getElementById('pv-count').textContent = d.count;`;
+
       const embedCode = `<!-- Page Views Badge - Embed Code -->
 <style>
-${cssTemplate.replace(/\{\{bg\}\}/g, bg).replace(/\{\{textColor\}\}/g, textColor)}
+${renderedCss}${borderCss}
+.badge-icon-emoji { margin-right: 6px; }
 </style>
 <div id="page-views-badge">
-${htmlTemplate.replace(/\{\{label\}\}/g, label).replace(/\{\{count\}\}/g, '<span id="pv-count">...</span>')}
+${renderedHtml}
 </div>
 <script>
 fetch('${baseUrl}/badge?username=${currentUser?.username}&format=json')
   .then(r => r.json())
-  .then(d => document.getElementById('pv-count').textContent = d.count);
+  .then(d => {${formatFunc}
+  });
 <` + `/script>`;
 
       navigator.clipboard.writeText(embedCode).then(() => {
