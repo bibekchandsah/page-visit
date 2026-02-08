@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,7 @@
   <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
@@ -35,13 +36,13 @@
       --green: #3fb950;
       --border: #30363d;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
@@ -49,55 +50,85 @@
       line-height: 1.6;
       min-height: 100vh;
     }
-    
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
-    
+
     /* Navigation */
     nav {
       background: var(--bg-secondary);
       border-bottom: 1px solid var(--border);
       padding: 16px 0;
     }
-    
+
     nav .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    
+
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
       color: var(--text-primary);
       text-decoration: none;
     }
-    
+
     .nav-links {
       display: flex;
       gap: 24px;
     }
-    
+
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
       font-weight: 500;
       transition: color 0.2s;
     }
-    
+
     .nav-links a:hover {
       color: var(--accent);
     }
-    
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--text-primary);
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-primary);
+      margin: 5px 0;
+      transition: all 0.3s;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
     /* Hero */
     .hero {
       text-align: center;
       padding: 80px 0;
     }
-    
+
     .hero h1 {
       font-size: 3.5rem;
       margin-bottom: 24px;
@@ -106,21 +137,21 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-    
+
     .hero p {
       font-size: 1.25rem;
       color: var(--text-secondary);
       max-width: 600px;
       margin: 0 auto 40px;
     }
-    
+
     .cta-buttons {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
     }
-    
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -134,26 +165,26 @@
       border: none;
       font-size: 1rem;
     }
-    
+
     .btn-primary {
       background: var(--accent);
       color: var(--bg-primary);
     }
-    
+
     .btn-primary:hover {
       background: var(--accent-hover);
     }
-    
+
     .btn-secondary {
       background: var(--bg-tertiary);
       color: var(--text-primary);
       border: 1px solid var(--border);
     }
-    
+
     .btn-secondary:hover {
       border-color: var(--accent);
     }
-    
+
     /* Badge Preview */
     .badge-preview {
       margin: 40px 0;
@@ -162,36 +193,36 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-    
+
     .badge-preview img {
       height: 28px;
     }
-    
+
     /* Features */
     .features {
       padding: 80px 0;
       background: var(--bg-secondary);
     }
-    
+
     .features h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 60px;
     }
-    
+
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 32px;
     }
-    
+
     .feature-card {
       background: var(--bg-tertiary);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 32px;
     }
-    
+
     .feature-card h3 {
       font-size: 1.25rem;
       margin-bottom: 12px;
@@ -199,11 +230,11 @@
       align-items: center;
       gap: 12px;
     }
-    
+
     .feature-card p {
       color: var(--text-secondary);
     }
-    
+
     .icon {
       width: 40px;
       height: 40px;
@@ -213,18 +244,18 @@
       background: linear-gradient(135deg, var(--accent), var(--green));
       border-radius: 8px;
     }
-    
+
     /* Quick Start */
     .quickstart {
       padding: 80px 0;
     }
-    
+
     .quickstart h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 60px;
     }
-    
+
     .code-block {
       background: var(--bg-secondary);
       border: 1px solid var(--border);
@@ -233,30 +264,30 @@
       margin: 24px 0;
       overflow-x: auto;
     }
-    
+
     .code-block code {
       font-family: 'Fira Code', 'Consolas', monospace;
       color: var(--text-primary);
     }
-    
+
     .copy-btn {
       float: right;
       padding: 6px 12px;
       font-size: 0.875rem;
     }
-    
+
     /* Generator */
     .generator {
       padding: 80px 0;
       background: var(--bg-secondary);
     }
-    
+
     .generator h2 {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 60px;
     }
-    
+
     .generator-form {
       max-width: 800px;
       margin: 0 auto;
@@ -265,24 +296,24 @@
       border-radius: 12px;
       padding: 32px;
     }
-    
+
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
     }
-    
+
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-    
+
     .form-group label {
       font-weight: 500;
       color: var(--text-secondary);
     }
-    
+
     .form-group input,
     .form-group select {
       padding: 12px;
@@ -292,21 +323,175 @@
       color: var(--text-primary);
       font-size: 1rem;
     }
-    
+
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: var(--accent);
     }
-    
+
+    .color-input-wrapper {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      width: 115%;
+    }
+
+    .color-input-wrapper input[type="text"] {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .color-picker {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      padding: 0;
+      border: none;
+      border-radius: 50% !important;
+      cursor: pointer;
+      background: radial-gradient(white, transparent), conic-gradient(red, orange, yellow, green, cyan, blue, magenta, red) !important;
+      -webkit-appearance: none;
+      appearance: none;
+      flex-shrink: 0;
+      right: 17%;
+      position: relative;
+    }
+
+    .color-picker::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 50% !important;
+    }
+
+    .color-picker::-webkit-color-swatch {
+      border-radius: 50%;
+      border: none;
+    }
+
+    /* Template Editor Styles */
+    .template-editor {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    .template-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .template-header h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .template-help {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .template-help code {
+      background: var(--bg-primary);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      color: var(--accent);
+    }
+
+    .template-textarea {
+      width: 100%;
+      min-height: 200px;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      resize: vertical;
+      tab-size: 2;
+    }
+
+    .template-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .template-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .template-actions .btn {
+      padding: 8px 14px;
+      font-size: 0.875rem;
+    }
+
+    .template-help.warning {
+      color: #f59e0b;
+    }
+
+    .html-editor-tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border: none;
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      border-radius: 6px 6px 0 0;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .html-preview-frame {
+      border-radius: 8px;
+      padding: 20px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .preview-box {
       margin-top: 32px;
       padding: 24px;
       background: var(--bg-secondary);
       border-radius: 8px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
     }
-    
+
     .output-box {
       margin-top: 24px;
       padding: 16px;
@@ -316,7 +501,7 @@
       word-break: break-all;
       text-align: left;
     }
-    
+
     /* Footer */
     footer {
       background: var(--bg-secondary);
@@ -325,41 +510,95 @@
       text-align: center;
       color: var(--text-secondary);
     }
-    
+
     footer a {
       color: var(--accent);
       text-decoration: none;
     }
-    
+
     @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+        z-index: 1001;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 280px;
+        height: 100vh;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 80px 32px 32px;
+        gap: 24px;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        border-left: 1px solid var(--border);
+        box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        padding: 8px 0;
+      }
+
+      .nav-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 999;
+      }
+
+      .nav-overlay.active {
+        display: block;
+      }
+
       .hero h1 {
         font-size: 2.5rem;
       }
-      
+
       .features-grid {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
+
 <body>
+  <div class="nav-overlay" id="nav-overlay" onclick="toggleNav()"></div>
   <nav>
     <div class="container">
       <a href="/" class="logo">📊 PageViews</a>
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#quickstart">Quick Start</a>
-        <a href="#generator">Generator</a>
+      <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#features" onclick="closeNav()">Features</a>
+        <a href="#quickstart" onclick="closeNav()">Quick Start</a>
+        <a href="#generator" onclick="closeNav()">Generator</a>
         <a href="/dashboard">Dashboard</a>
       </div>
     </div>
   </nav>
-  
+
   <section class="hero">
     <div class="container">
       <h1>Track Your GitHub Profile Views</h1>
-      <p>Beautiful, customizable badges to showcase your profile and repository view counts. Easy to embed in your README.</p>
-      
+      <p>Beautiful, customizable badges to showcase your profile and repository view counts. Easy to embed in your
+        README.</p>
+
       <div class="badge-preview">
         <img src="/preview?count=12453&style=flat&label=Profile+Views&icon=eye&bg=4c1" alt="Flat badge">
         <img src="/preview?count=8921&style=rounded&label=Repo+Views&icon=github&bg=007acc" alt="Rounded badge">
@@ -367,17 +606,20 @@
         <img src="/preview?count=3421&style=neon&label=Views&icon=fire&bg=00ff00" alt="Neon badge">
         <img src="/preview?count=9876&style=glass&label=Hits&icon=chart&bg=0f2027,203a43,2c5364" alt="Glass badge">
       </div>
-      
+
       <div class="cta-buttons">
         <a href="/auth/github" class="btn btn-primary">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
           Sign in with GitHub
         </a>
         <a href="#generator" class="btn btn-secondary">Generate Badge</a>
       </div>
     </div>
   </section>
-  
+
   <section class="features" id="features">
     <div class="container">
       <h2>Features</h2>
@@ -387,7 +629,8 @@
             <div class="icon">🎨</div>
             Highly Customizable
           </h3>
-          <p>Choose from multiple styles, icons, colors, and fonts. Create gradients and add borders for unique badges.</p>
+          <p>Choose from multiple styles, icons, colors, and fonts. Create gradients and add borders for unique badges.
+          </p>
         </div>
         <div class="feature-card">
           <h3>
@@ -427,24 +670,25 @@
       </div>
     </div>
   </section>
-  
+
   <section class="quickstart" id="quickstart">
     <div class="container">
       <h2>Quick Start</h2>
-      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px;">Add a view counter to your GitHub profile in seconds</p>
-      
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 40px;">Add a view counter to your
+        GitHub profile in seconds</p>
+
       <h3 style="margin-bottom: 16px;">1. Add to your README.md</h3>
       <div class="code-block">
         <button class="btn btn-secondary copy-btn" onclick="copyCode(this)">Copy</button>
         <code>![Profile Views](https://your-domain.com/badge?username=YOUR_USERNAME)</code>
       </div>
-      
+
       <h3 style="margin: 32px 0 16px;">2. Customize with parameters</h3>
       <div class="code-block">
         <button class="btn btn-secondary copy-btn" onclick="copyCode(this)">Copy</button>
         <code>![Profile Views](https://your-domain.com/badge?username=YOUR_USERNAME&style=rounded&icon=eye&bg=007acc&label=Profile+Views)</code>
       </div>
-      
+
       <h3 style="margin: 32px 0 16px;">Available Parameters</h3>
       <div class="code-block" style="padding: 0; overflow: hidden;">
         <table style="width: 100%; border-collapse: collapse;">
@@ -456,20 +700,67 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">username</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">GitHub username (required)</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">repo</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Repository name</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">style</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Badge style</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">flat, rounded, pill, neon, glass</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">icon</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Badge icon</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">eye, github, fire, star, chart</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">bg</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Background color (hex or gradient)</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">4c1, 007acc, ff6b6b,fa8072</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">textColor</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Text color (hex)</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">fff, 000, etc.</td></tr>
-            <tr><td style="padding: 12px; border-bottom: 1px solid var(--border);">label</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">Custom label text</td><td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td></tr>
-            <tr><td style="padding: 12px;">countFormat</td><td style="padding: 12px;">Number format</td><td style="padding: 12px;">normal, short, comma</td></tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">username</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">GitHub username (required)</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">repo</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Repository name (optional)</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">style</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Badge style</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">flat, rounded, pill, neon, glass, custom, html</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">icon</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Badge icon</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">none, eye, github, fire, star, chart, heart, rocket, user, code, globe</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">bg</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Background color (hex)</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">4c1, 007acc, ff6b6b, fa8072, etc.</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">textColor</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Text color (hex)</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">fff, 000, etc.</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">borderColor</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Border color (hex)</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">333, fff, 007acc, etc.</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">border</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Show border around badge</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">true, false</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">label</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Custom label text</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">-</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">countFormat</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">Number format</td>
+              <td style="padding: 12px; border-bottom: 1px solid var(--border);">normal, short, comma</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px;">format</td>
+              <td style="padding: 12px;">Output format</td>
+              <td style="padding: 12px;">svg, png, json</td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </section>
-  
+
   <section class="generator" id="generator">
     <div class="container">
       <h2>Badge Generator</h2>
@@ -491,16 +782,24 @@
               <option value="pill">Pill</option>
               <option value="neon">Neon</option>
               <option value="glass">Glass</option>
+              <option value="custom">Custom SVG</option>
+              <option value="html">Custom HTML/CSS</option>
             </select>
           </div>
           <div class="form-group">
             <label for="icon">Icon</label>
             <select id="icon">
+              <option value="">None</option>
               <option value="eye">👁️ Eye</option>
-              <option value="github">GitHub</option>
+              <option value="github">🐙 GitHub</option>
               <option value="fire">🔥 Fire</option>
               <option value="star">⭐ Star</option>
               <option value="chart">📊 Chart</option>
+              <option value="heart">❤️ Heart</option>
+              <option value="rocket">🚀 Rocket</option>
+              <option value="user">👤 User</option>
+              <option value="code">💻 Code</option>
+              <option value="globe">🌐 Globe</option>
             </select>
           </div>
           <div class="form-group">
@@ -508,12 +807,18 @@
             <input type="text" id="label" value="Profile Views">
           </div>
           <div class="form-group">
-            <label for="bg">Background (hex)</label>
-            <input type="text" id="bg" value="4c1" placeholder="4c1 or gradient: ff6b6b,fa8072">
+            <label for="bg">Background</label>
+            <div class="color-input-wrapper">
+              <input type="text" id="bg" value="4c1" placeholder="hex or gradient">
+              <input type="color" id="bg-picker" value="#44cc11" class="color-picker">
+            </div>
           </div>
           <div class="form-group">
-            <label for="textColor">Text Color (hex)</label>
-            <input type="text" id="textColor" value="fff">
+            <label for="textColor">Text Color</label>
+            <div class="color-input-wrapper">
+              <input type="text" id="textColor" value="fff">
+              <input type="color" id="textColor-picker" value="#ffffff" class="color-picker">
+            </div>
           </div>
           <div class="form-group">
             <label for="countFormat">Count Format</label>
@@ -523,49 +828,317 @@
               <option value="comma">Comma (1,234)</option>
             </select>
           </div>
+          <div class="form-group">
+            <label for="border">Border</label>
+            <select id="border">
+              <option value="false">No Border</option>
+              <option value="true">With Border</option>
+            </select>
+          </div>
+          <div class="form-group" id="border-color-group" style="display: none;">
+            <label for="borderColor">Border Color</label>
+            <div class="color-input-wrapper">
+              <input type="text" id="borderColor" value="333">
+              <input type="color" id="borderColor-picker" value="#333333" class="color-picker">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="format">Format</label>
+            <select id="format">
+              <option value="svg">SVG</option>
+              <option value="png">PNG</option>
+              <option value="json">JSON</option>
+            </select>
+          </div>
         </div>
-        
+
+        <!-- Custom SVG Template Editor -->
+        <div id="custom-template-editor" class="template-editor" style="display: none;">
+          <div class="template-header">
+            <h3>Custom SVG Template</h3>
+            <span class="template-help">Use placeholders: <code>{{count}}</code>, <code>{{label}}</code>,
+              <code>{{bg}}</code>, <code>{{textColor}}</code>, <code>{{icon}}</code></span>
+          </div>
+          <textarea id="custom-template" class="template-textarea" spellcheck="false"></textarea>
+          <div class="template-actions">
+            <button class="btn btn-secondary" onclick="resetTemplate()">Reset to Default</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('minimal')">Minimal</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('gradient')">Gradient</button>
+            <button class="btn btn-secondary" onclick="loadTemplatePreset('animated')">Animated</button>
+          </div>
+        </div>
+
+        <!-- HTML Template Editor -->
+        <div id="html-template-editor" class="template-editor" style="display: none;">
+          <div class="template-header">
+            <h3>Custom HTML/CSS Template</h3>
+            <span class="template-help warning">HTML badges work on websites only, not GitHub READMEs</span>
+          </div>
+          <div class="html-editor-tabs">
+            <button class="tab-btn active" onclick="switchHtmlTab('html')">HTML</button>
+            <button class="tab-btn" onclick="switchHtmlTab('css')">CSS</button>
+          </div>
+          <textarea id="html-template" class="template-textarea" spellcheck="false"></textarea>
+          <textarea id="css-template" class="template-textarea" spellcheck="false" style="display: none;"></textarea>
+          <div class="template-actions">
+            <button class="btn btn-secondary" onclick="resetHtmlTemplate()">Reset to Default</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('card')">Card Style</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('neon')">Neon Glow</button>
+            <button class="btn btn-secondary" onclick="loadHtmlPreset('modern')">Modern</button>
+          </div>
+        </div>
+
         <div class="preview-box">
           <p style="margin-bottom: 16px; color: var(--text-secondary);">Preview:</p>
-          <img id="badge-preview" src="/preview?count=1234&style=flat&label=Profile+Views&icon=eye&bg=4c1" alt="Badge preview">
+          <img id="badge-preview" src="/preview?count=1234&style=flat&label=Profile+Views&icon=eye&bg=4c1"
+            alt="Badge preview">
+          <div id="html-preview-container" class="html-preview-frame" style="display: none;"></div>
         </div>
-        
+
         <div class="output-box">
           <p style="margin-bottom: 8px; color: var(--text-secondary);">Markdown:</p>
-          <code id="markdown-output">![Profile Views](<span id="badge-url">/badge?username=YOUR_USERNAME&style=flat&icon=eye&bg=4c1&label=Profile+Views</span>)</code>
+          <code
+            id="markdown-output">![Profile Views](<span id="badge-url">/badge?username=YOUR_USERNAME&style=flat&icon=eye&bg=4c1&label=Profile+Views</span>)</code>
         </div>
-        
-        <div style="margin-top: 24px; display: flex; gap: 16px; justify-content: center;">
-          <button class="btn btn-primary" onclick="generateBadge()">Generate Badge</button>
-          <button class="btn btn-secondary" onclick="copyMarkdown()">Copy Markdown</button>
+
+        <div style="margin-top: 24px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <button id="generate-btn" class="btn btn-primary" onclick="generateBadge()">Generate Badge</button>
+          <button id="copy-markdown-btn" class="btn btn-secondary" onclick="copyMarkdown(this)">Copy Markdown</button>
+          <button id="copy-html-btn" class="btn btn-secondary" onclick="copyHtmlCode(this)" style="display: none;">Copy
+            HTML Embed Code</button>
         </div>
       </div>
     </div>
   </section>
-  
+
   <footer>
     <div class="container">
       <p>Built with ❤️ for the open source community</p>
       <p style="margin-top: 8px;">
-        <a href="https://github.com" target="_blank">GitHub</a> • 
+        <a href="https://github.com" target="_blank">GitHub</a> •
         <a href="/dashboard">Dashboard</a> •
         <a href="/api/stats/demo">API</a>
       </p>
     </div>
   </footer>
-  
+
   <script>
+    // Mobile navigation toggle
+    function toggleNav() {
+      document.getElementById('nav-toggle').classList.toggle('active');
+      document.getElementById('nav-links').classList.toggle('active');
+      document.getElementById('nav-overlay').classList.toggle('active');
+      document.body.style.overflow = document.getElementById('nav-links').classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeNav() {
+      document.getElementById('nav-toggle').classList.remove('active');
+      document.getElementById('nav-links').classList.remove('active');
+      document.getElementById('nav-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
     const baseUrl = window.location.origin;
-    
+
+    // Icon emoji mapping for HTML templates
+    const iconEmojis = {
+      '': '',
+      none: '',
+      eye: '👁️',
+      github: '🐙',
+      star: '⭐',
+      fire: '🔥',
+      chart: '📊',
+      heart: '❤️',
+      rocket: '🚀',
+      user: '👤',
+      code: '💻',
+      globe: '🌐'
+    };
+
+    // Icon SVG paths for Custom SVG templates
+    const iconSvgPaths = {
+      '': '',
+      none: '',
+      eye: '<path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>',
+      github: '<path fill="currentColor" d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>',
+      fire: '<path fill="currentColor" d="M11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.47-.3 1.42-.75 1.42-.78 0-.05-.01-.09-.01-.14-.26.02-.67.14-1.48.42C9.14 12.87 6.5 13.93 6.5 17c0 2.76 2.24 5 5 5 2.76 0 5-2.24 5-5 0-.64-.13-1.24-.35-1.8-.66 1.66-2.39 2.8-4.44 2.8z"/>',
+      star: '<path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>',
+      chart: '<path fill="currentColor" d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/>',
+      heart: '<path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',
+      rocket: '<path fill="currentColor" d="M12.5 2.4c-1.3 1.1-2.3 2.5-3 4.1-.6 1.4-.9 2.9-1 4.5H5c.3-2.9 1.3-5.5 3-7.8.2-.3.5-.5.8-.8h3.7z"/>',
+      user: '<path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
+      code: '<path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>',
+      globe: '<path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>'
+    };
+
+    // Function to get icon SVG for custom templates
+    function getIconSvg(iconName, color = '#fff', height = 40) {
+      if (!iconName || iconName === 'none' || iconName === '') return '';
+      const path = iconSvgPaths[iconName] || '';
+      if (!path) return '';
+      const iconSize = 16;
+      const yOffset = (height - iconSize) / 2;
+      return `<g transform="translate(10, ${yOffset}) scale(0.67)" fill="${color}">${path}</g>`;
+    }
+
+    // Format count based on countFormat setting
+    function formatCountValue(count, format) {
+      const num = parseInt(count);
+      if (format === 'short') {
+        if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+        if (num >= 1000) return (num / 1000).toFixed(1) + 'k';
+      }
+      return count;
+    }
+
+    // SVG Template presets
+    const templatePresets = {
+      default: `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="40" rx="8" fill="url(#bg-grad)"/>
+  {{icon}}
+  <text x="{{labelX}}" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="14">{{label}}</text>
+  <text x="170" y="26" fill="#{{textColor}}" font-family="Arial, sans-serif" font-size="16" font-weight="bold">{{count}}</text>
+</svg>`,
+      minimal: `<svg xmlns="http://www.w3.org/2000/svg" width="150" height="28" viewBox="0 0 150 28">
+  <rect width="150" height="28" rx="4" fill="#{{bg}}"/>
+  {{icon}}
+  <text x="{{labelX}}" y="19" fill="#{{textColor}}" font-family="system-ui" font-size="12">{{label}}: {{count}}</text>
+</svg>`,
+      gradient: `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="36" viewBox="0 0 200 36">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#{{bg}}"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="36" rx="18" fill="url(#grad)"/>
+  {{icon}}
+  <text x="{{labelX}}" y="24" fill="#{{textColor}}" font-family="Arial" font-size="13" font-weight="600">{{label}}</text>
+  <text x="150" y="24" fill="#{{textColor}}" font-family="Arial" font-size="14" font-weight="bold">{{count}}</text>
+</svg>`,
+      animated: `<svg xmlns="http://www.w3.org/2000/svg" width="220" height="40" viewBox="0 0 220 40">
+  <style>
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    .count { animation: pulse 2s ease-in-out infinite; }
+  </style>
+  <rect width="220" height="40" rx="6" fill="#{{bg}}"/>
+  {{icon}}
+  <text x="{{labelX}}" y="26" fill="#{{textColor}}" font-family="Arial" font-size="13">{{label}}</text>
+  <text x="160" y="26" fill="#{{textColor}}" font-family="Arial" font-size="15" font-weight="bold" class="count">{{count}}</text>
+</svg>`
+    };
+
+    // HTML Template Presets
+    const htmlPresets = {
+      default: {
+        html: `<div class="badge-container">
+  {{icon}}<span class="badge-label">{{label}}</span>
+  <span class="badge-count">{{count}}</span>
+</div>`,
+        css: `.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, {{bg}} 0%, #6366f1 100%);
+  border-radius: 20px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.badge-label { color: {{textColor}}; font-size: 14px; }
+.badge-count { color: {{textColor}}; font-size: 16px; font-weight: bold; background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; }`
+      },
+      card: {
+        html: `<div class="badge-card">
+  <div class="badge-icon">{{icon}}</div>
+  <div class="badge-content">
+    <div class="badge-label">{{label}}</div>
+    <div class="badge-count">{{count}}</div>
+  </div>
+</div>`,
+        css: `.badge-card {
+  display: inline-flex; align-items: center; gap: 12px; padding: 12px 20px;
+  background: {{bg}}; border-radius: 12px; font-family: 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.badge-icon { font-size: 24px; }
+.badge-content { display: flex; flex-direction: column; }
+.badge-label { color: {{textColor}}; font-size: 12px; opacity: 0.8; }
+.badge-count { color: {{textColor}}; font-size: 20px; font-weight: bold; }`
+      },
+      neon: {
+        html: `<div class="neon-badge">{{icon}}<span class="neon-text">{{label}}: {{count}}</span></div>`,
+        css: `.neon-badge {
+  display: inline-flex; align-items: center; padding: 10px 24px;
+  background: #0a0a0a; border-radius: 8px; border: 2px solid {{bg}};
+  box-shadow: 0 0 10px {{bg}}, 0 0 20px {{bg}}, inset 0 0 10px rgba(0,255,0,0.1);
+}
+.neon-text { color: {{textColor}}; font-family: 'Courier New', monospace; font-size: 16px; font-weight: bold; text-shadow: 0 0 5px {{bg}}, 0 0 10px {{bg}}; }`
+      },
+      modern: {
+        html: `<div class="modern-badge">{{icon}}<span class="modern-label">{{label}}</span><div class="modern-divider"></div><span class="modern-count">{{count}}</span></div>`,
+        css: `.modern-badge {
+  display: inline-flex; align-items: center; padding: 0;
+  background: linear-gradient(90deg, {{bg}} 0%, #1e1e1e 50%, #1e1e1e 100%);
+  border-radius: 6px; font-family: system-ui, sans-serif; overflow: hidden;
+}
+.modern-label { color: {{textColor}}; font-size: 13px; padding: 8px 12px; }
+.modern-divider { width: 1px; height: 20px; background: rgba(255,255,255,0.2); }
+.modern-count { color: {{textColor}}; font-size: 14px; font-weight: bold; padding: 8px 14px; background: rgba(255,255,255,0.1); }`
+      }
+    };
+
     // Form elements
-    const inputs = ['username', 'repo', 'style', 'icon', 'label', 'bg', 'textColor', 'countFormat'];
-    
+    const inputs = ['username', 'repo', 'style', 'icon', 'label', 'bg', 'textColor', 'countFormat', 'border', 'borderColor', 'format'];
+
     // Add event listeners
     inputs.forEach(id => {
-      document.getElementById(id).addEventListener('input', updatePreview);
-      document.getElementById(id).addEventListener('change', updatePreview);
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', updatePreview);
+        el.addEventListener('change', updatePreview);
+      }
     });
-    
+
+    // Color picker sync
+    ['bg', 'textColor', 'borderColor'].forEach(id => {
+      const textInput = document.getElementById(id);
+      const picker = document.getElementById(id + '-picker');
+      if (textInput && picker) {
+        picker.addEventListener('input', () => {
+          textInput.value = picker.value.replace('#', '');
+          updatePreview();
+        });
+        textInput.addEventListener('input', () => {
+          const val = textInput.value.replace('#', '');
+          if (/^[0-9A-Fa-f]{6}$/.test(val)) {
+            picker.value = '#' + val;
+          }
+        });
+      }
+    });
+
+    // Template textarea listeners
+    const customTemplate = document.getElementById('custom-template');
+    const htmlTemplate = document.getElementById('html-template');
+    const cssTemplate = document.getElementById('css-template');
+    if (customTemplate) customTemplate.addEventListener('input', updatePreview);
+    if (htmlTemplate) htmlTemplate.addEventListener('input', updatePreview);
+    if (cssTemplate) cssTemplate.addEventListener('input', updatePreview);
+
+    // Initialize templates
+    if (customTemplate) customTemplate.value = templatePresets.default;
+    if (htmlTemplate) htmlTemplate.value = htmlPresets.default.html;
+    if (cssTemplate) cssTemplate.value = htmlPresets.default.css;
+
     function updatePreview() {
       const username = document.getElementById('username').value || 'YOUR_USERNAME';
       const repo = document.getElementById('repo').value;
@@ -575,8 +1148,104 @@
       const bg = document.getElementById('bg').value;
       const textColor = document.getElementById('textColor').value;
       const countFormat = document.getElementById('countFormat').value;
-      
-      // Build preview URL
+      const border = document.getElementById('border').value;
+      const borderColor = document.getElementById('borderColor').value;
+      const format = document.getElementById('format').value;
+
+      // Show/hide border color based on border selection
+      document.getElementById('border-color-group').style.display = border === 'true' ? 'flex' : 'none';
+
+      // Show/hide custom template editors
+      document.getElementById('custom-template-editor').style.display = style === 'custom' ? 'block' : 'none';
+      document.getElementById('html-template-editor').style.display = style === 'html' ? 'block' : 'none';
+
+      // Show/hide appropriate preview containers and buttons
+      const imgPreview = document.getElementById('badge-preview');
+      const htmlPreviewContainer = document.getElementById('html-preview-container');
+      const copyHtmlBtn = document.getElementById('copy-html-btn');
+      const copyMarkdownBtn = document.getElementById('copy-markdown-btn');
+
+      if (style === 'html') {
+        imgPreview.style.display = 'none';
+        htmlPreviewContainer.style.display = 'flex';
+        copyHtmlBtn.style.display = 'inline-flex';
+      } else {
+        imgPreview.style.display = 'block';
+        htmlPreviewContainer.style.display = 'none';
+        copyHtmlBtn.style.display = 'none';
+      }
+
+      // Handle HTML template preview
+      if (style === 'html') {
+        const htmlTpl = document.getElementById('html-template').value;
+        const cssTpl = document.getElementById('css-template').value;
+        const iconEmoji = iconEmojis[icon] || '';
+        const iconHtml = iconEmoji ? `<span class="badge-icon-emoji">${iconEmoji}</span>` : '';
+        const formattedCount = formatCountValue('1234', countFormat);
+        const bgColor = bg.startsWith('#') ? bg : '#' + bg;
+        const txtColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+        const brdColor = borderColor.startsWith('#') ? borderColor : '#' + borderColor;
+        const borderStyle = border === 'true' ? `border: 2px solid ${brdColor};` : '';
+
+        const renderedHtml = htmlTpl
+          .replace(/\{\{count\}\}/g, formattedCount)
+          .replace(/\{\{label\}\}/g, label)
+          .replace(/\{\{bg\}\}/g, bgColor)
+          .replace(/\{\{textColor\}\}/g, txtColor)
+          .replace(/\{\{icon\}\}/g, iconHtml)
+          .replace(/\{\{borderStyle\}\}/g, borderStyle)
+          .replace(/\{\{borderColor\}\}/g, brdColor);
+
+        const renderedCss = cssTpl
+          .replace(/\{\{bg\}\}/g, bgColor)
+          .replace(/\{\{textColor\}\}/g, txtColor)
+          .replace(/\{\{borderColor\}\}/g, brdColor);
+
+        const borderCss = border === 'true' ? `.badge-container, .badge-card, .neon-badge, .modern-badge { ${borderStyle} }` : '';
+
+        htmlPreviewContainer.innerHTML = `<style>${renderedCss}${borderCss}
+.badge-icon-emoji { margin-right: 6px; }</style>${renderedHtml}`;
+
+        const embedCode = `<!-- HTML Badge -->\n<style>${renderedCss}${borderCss}\n.badge-icon-emoji { margin-right: 6px; }</style>\n${renderedHtml}`;
+        document.getElementById('markdown-output').innerHTML = `<span id="badge-url">${embedCode.substring(0, 100)}...</span>`;
+        document.getElementById('badge-url').textContent = 'HTML embed code (use Copy HTML button)';
+        return;
+      }
+
+      // Handle custom SVG template preview
+      if (style === 'custom') {
+        const template = document.getElementById('custom-template').value;
+        const iconColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+        const heightMatch = template.match(/height="(\d+)"/);
+        const badgeHeight = heightMatch ? parseInt(heightMatch[1]) : 40;
+        const iconSvg = getIconSvg(icon, iconColor, badgeHeight);
+        const hasIcon = icon && icon !== 'none' && icon !== '';
+        const labelX = hasIcon ? '32' : '12';
+        const renderedSvg = template
+          .replace(/\{\{count\}\}/g, '1234')
+          .replace(/\{\{label\}\}/g, label)
+          .replace(/\{\{bg\}\}/g, bg.replace('#', ''))
+          .replace(/\{\{textColor\}\}/g, textColor.replace('#', ''))
+          .replace(/\{\{icon\}\}/g, iconSvg)
+          .replace(/\{\{labelX\}\}/g, labelX);
+
+        const svgBlob = new Blob([renderedSvg], { type: 'image/svg+xml' });
+        const url = URL.createObjectURL(svgBlob);
+        document.getElementById('badge-preview').src = url;
+
+        const badgeParams = new URLSearchParams({
+          username: username,
+          style: 'custom',
+          icon, label, bg, textColor, countFormat, format,
+          template: btoa(template)
+        });
+        if (repo) badgeParams.set('repo', repo);
+        const badgeUrl = `${baseUrl}/badge?${badgeParams}`;
+        document.getElementById('badge-url').textContent = badgeUrl;
+        return;
+      }
+
+      // Build preview URL for standard styles
       const params = new URLSearchParams({
         count: '1234',
         style: style,
@@ -584,12 +1253,13 @@
         label: label,
         bg: bg,
         textColor: textColor,
-        countFormat: countFormat
+        countFormat: countFormat,
+        border: border
       });
-      
-      const previewUrl = `/preview?${params.toString()}`;
-      document.getElementById('badge-preview').src = previewUrl;
-      
+      if (border === 'true') params.set('borderColor', borderColor);
+
+      document.getElementById('badge-preview').src = `/preview?${params.toString()}`;
+
       // Build badge URL
       const badgeParams = new URLSearchParams({
         username: username,
@@ -598,17 +1268,70 @@
         label: label,
         bg: bg,
         textColor: textColor,
-        countFormat: countFormat
+        countFormat: countFormat,
+        border: border,
+        format: format
       });
-      
-      if (repo) {
-        badgeParams.set('repo', repo);
-      }
-      
+
+      if (border === 'true') badgeParams.set('borderColor', borderColor);
+      if (repo) badgeParams.set('repo', repo);
+
       const badgeUrl = `${baseUrl}/badge?${badgeParams.toString()}`;
       document.getElementById('badge-url').textContent = badgeUrl;
     }
-    
+
+    // Template functions
+    function resetTemplate() {
+      document.getElementById('custom-template').value = templatePresets.default;
+      updatePreview();
+    }
+
+    function loadTemplatePreset(preset) {
+      if (templatePresets[preset]) {
+        document.getElementById('custom-template').value = templatePresets[preset];
+        updatePreview();
+      }
+    }
+
+    function switchHtmlTab(tab) {
+      const htmlTextarea = document.getElementById('html-template');
+      const cssTextarea = document.getElementById('css-template');
+      const tabs = document.querySelectorAll('.html-editor-tabs .tab-btn');
+      tabs.forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      if (tab === 'html') {
+        htmlTextarea.style.display = 'block';
+        cssTextarea.style.display = 'none';
+      } else {
+        htmlTextarea.style.display = 'none';
+        cssTextarea.style.display = 'block';
+      }
+    }
+
+    function resetHtmlTemplate() {
+      document.getElementById('html-template').value = htmlPresets.default.html;
+      document.getElementById('css-template').value = htmlPresets.default.css;
+      updatePreview();
+    }
+
+    function loadHtmlPreset(preset) {
+      if (htmlPresets[preset]) {
+        document.getElementById('html-template').value = htmlPresets[preset].html;
+        document.getElementById('css-template').value = htmlPresets[preset].css;
+        updatePreview();
+      }
+    }
+
+    function showButtonFeedback(button, originalText) {
+      if (!button) return;
+      button.textContent = 'Copied!';
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = originalText;
+        button.disabled = false;
+      }, 3000);
+    }
+
     function generateBadge() {
       const username = document.getElementById('username').value;
       if (!username) {
@@ -617,14 +1340,81 @@
       }
       updatePreview();
     }
-    
-    function copyMarkdown() {
+
+    function copyMarkdown(btn) {
       const markdown = document.getElementById('markdown-output').textContent;
       navigator.clipboard.writeText(markdown).then(() => {
-        alert('Markdown copied to clipboard!');
+        showButtonFeedback(btn, 'Copy Markdown');
       });
     }
-    
+
+    function copyHtmlCode(btn) {
+      const style = document.getElementById('style').value;
+      if (style !== 'html') return;
+
+      const repo = document.getElementById('repo').value;
+      const username = document.getElementById('username').value || 'YOUR_USERNAME';
+      const label = document.getElementById('label').value;
+      const bg = document.getElementById('bg').value;
+      const textColor = document.getElementById('textColor').value;
+      const icon = document.getElementById('icon').value;
+      const countFormat = document.getElementById('countFormat').value;
+      const border = document.getElementById('border').value;
+      const borderColor = document.getElementById('borderColor').value;
+      const htmlTpl = document.getElementById('html-template').value;
+      const cssTpl = document.getElementById('css-template').value;
+
+      const bgColor = bg.startsWith('#') ? bg : '#' + bg;
+      const txtColor = textColor.startsWith('#') ? textColor : '#' + textColor;
+      const brdColor = borderColor.startsWith('#') ? borderColor : '#' + borderColor;
+
+      const iconEmoji = iconEmojis[icon] || '';
+      const iconHtml = iconEmoji ? `<span class="badge-icon-emoji">${iconEmoji}</span>` : '';
+      const borderStyle = border === 'true' ? `border: 2px solid ${brdColor};` : '';
+      const borderCss = border === 'true' ? `\n.badge-container, .badge-card, .neon-badge, .modern-badge { ${borderStyle} }` : '';
+
+      const renderedCss = cssTpl
+        .replace(/\{\{bg\}\}/g, bgColor)
+        .replace(/\{\{textColor\}\}/g, txtColor)
+        .replace(/\{\{borderColor\}\}/g, brdColor);
+
+      const renderedHtml = htmlTpl
+        .replace(/\{\{label\}\}/g, label)
+        .replace(/\{\{count\}\}/g, '<span id="pv-count">...</span>')
+        .replace(/\{\{bg\}\}/g, bgColor)
+        .replace(/\{\{textColor\}\}/g, txtColor)
+        .replace(/\{\{icon\}\}/g, iconHtml)
+        .replace(/\{\{borderStyle\}\}/g, borderStyle)
+        .replace(/\{\{borderColor\}\}/g, brdColor);
+
+      const formatFunc = countFormat === 'short' ? `
+  const n = d.count;
+  const formatted = n >= 1000000 ? (n/1000000).toFixed(1)+'M' : n >= 1000 ? (n/1000).toFixed(1)+'k' : n;
+  document.getElementById('pv-count').textContent = formatted;` : `
+  document.getElementById('pv-count').textContent = d.count;`;
+
+      const repoParam = repo ? `&repo=${encodeURIComponent(repo)}` : '';
+
+      const embedCode = `<!-- Page Views Badge - Embed Code -->
+<style>
+${renderedCss}${borderCss}
+.badge-icon-emoji { margin-right: 6px; }
+</style>
+<div id="page-views-badge">
+${renderedHtml}
+</div>
+<script>
+fetch('${baseUrl}/badge?username=${username}${repoParam}&format=json')
+  .then(r => r.json())
+  .then(d => {${formatFunc}
+  });
+<` + `/script>`;
+
+      navigator.clipboard.writeText(embedCode).then(() => {
+        showButtonFeedback(btn, 'Copy HTML Embed Code');
+      });
+    }
+
     function copyCode(btn) {
       const code = btn.parentElement.querySelector('code').textContent;
       navigator.clipboard.writeText(code).then(() => {
@@ -632,9 +1422,10 @@
         setTimeout(() => btn.textContent = 'Copy', 2000);
       });
     }
-    
+
     // Initial preview
     updatePreview();
   </script>
 </body>
+
 </html>
